@@ -67,7 +67,7 @@ export function Navbar() {
               className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
             />
           </div>
-          <span className="font-inter text-xs sm:text-[13px] font-bold uppercase tracking-[0.2em] text-slate-900 transition-colors duration-200 group-hover:text-[#0A2540]">
+          <span className="font-inter text-xs sm:text-[13px] font-normal uppercase tracking-[0.2em] text-slate-700 transition-colors duration-200 group-hover:text-slate-900">
             OLUBUNMI AYANTUNJI.
           </span>
         </Link>

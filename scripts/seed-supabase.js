@@ -41,6 +41,20 @@ const researchData = [
     featured: true,
   },
   {
+    id: "minutes-from-roundtable",
+    year: 2024,
+    date: "Special Publication",
+    title: "Minutes from the Roundtable",
+    kind: "Book",
+    venue: "The Policy Roundtable",
+    abstract:
+      "This literature is a compilation of practical recommendations stemming from the highly cerebral sessions of The Policy Roundtable. A \"not for profit\", policy conversation centered organization, headquatered in Abuja, the capital city of Nigeria.",
+    tags: ["The Policy Roundtable", "Policy Recommendations", "Civic Engagement", "Governance"],
+    status: "Download Available",
+    href: "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/book/minutes_from_roundtable.pdf",
+    featured: true,
+  },
+  {
     id: "plastic-bags-prohibition-bill",
     year: 2024,
     date: "2024",

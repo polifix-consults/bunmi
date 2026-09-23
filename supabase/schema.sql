@@ -53,6 +53,19 @@ VALUES
     TRUE
   ),
   (
+    'minutes-from-roundtable',
+    'Minutes from the Roundtable',
+    'Book',
+    'Special Publication',
+    2024,
+    'The Policy Roundtable',
+    'This literature is a compilation of practical recommendations stemming from the highly cerebral sessions of The Policy Roundtable. A "not for profit", policy conversation centered organization, headquatered in Abuja, the capital city of Nigeria.',
+    ARRAY['The Policy Roundtable', 'Policy Recommendations', 'Civic Engagement', 'Governance'],
+    'Download Available',
+    'https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/book/minutes_from_roundtable.pdf',
+    TRUE
+  ),
+  (
     'plastic-bags-prohibition-bill',
     'The Plastic Bags Prohibition and Management Bill',
     'Policy Brief / Legislative Draft',
@@ -753,3 +766,18 @@ CREATE POLICY "Only authenticated/service can view contact messages"
   ON public.contact_messages
   FOR SELECT
   USING (true);
+
+
+-- ==============================================================================
+-- 6. STORAGE BUCKET: book (for downloadable publications & PDFs)
+-- ==============================================================================
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('book', 'book', true)
+ON CONFLICT (id) DO UPDATE SET public = true;
+
+DROP POLICY IF EXISTS "Public can view and download book files" ON storage.objects;
+CREATE POLICY "Public can view and download book files"
+  ON storage.objects
+  FOR SELECT
+  USING (bucket_id = 'book');
+

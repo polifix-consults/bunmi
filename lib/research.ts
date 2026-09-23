@@ -23,6 +23,8 @@ export type ResearchWork = {
   tags: string[];
   status?: string;
   href?: string;
+  downloadUrl?: string;
+  coverImage?: string;
   featured?: boolean;
 };
 
@@ -45,7 +47,24 @@ export const RESEARCH_WORKS: ResearchWork[] = [
       "Olubunmi Ayantunji takes readers on a compelling journey into one of Africa's most enduring governance challenges: why do some imported policy solutions spark progress, while others, despite the best intentions, fail to create meaningful change? Drawing on compelling case studies, historical examples, and practical policy insights, Ayantunji examines how governance models, institutions, and development strategies cross borders and shape outcomes across Africa. Essential reading for policymakers, public servants, academics, students, and development practitioners.",
     tags: ["Policy Transfer", "African Governance", "Public Administration", "Governance Reform"],
     status: "Available Now",
+    coverImage: "/images/book_cover.png",
     featured: true,
+  },
+  {
+    id: "minutes-from-roundtable",
+    year: 2024,
+    date: "Special Publication",
+    title: "Minutes from the roundtable",
+    kind: "Book",
+    venue: "The Policy Roundtable",
+    abstract:
+      "This literature is a compilation of practical recommendations stemming from the highly cerebral sessions of The Policy Roundtable. A \"not for profit\", policy conversation centered organization, headquatered in Abuja, the capital city of Nigeria.",
+    tags: ["The Policy Roundtable", "Policy Recommendations", "Civic Engagement", "Governance"],
+    status: "Download Available",
+    href: "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/book/minutes_from_roundtable.pdf",
+    downloadUrl: "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/book/minutes_from_roundtable.pdf",
+    coverImage: "/images/media/pRoundT.webp",
+    featured: false,
   },
   {
     id: "plastic-bags-prohibition-bill",
@@ -283,19 +302,53 @@ export async function getResearchWorks(): Promise<ResearchWork[]> {
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
-          return data.map((item: Record<string, unknown>) => ({
-            id: String(item.id),
-            year: Number(item.year),
-            date: item.date ? String(item.date) : undefined,
-            title: String(item.title),
-            kind: String(item.kind),
-            venue: String(item.venue || ""),
-            abstract: String(item.abstract || ""),
-            tags: Array.isArray(item.tags) ? item.tags : [],
-            status: item.status ? String(item.status) : undefined,
-            href: item.href ? String(item.href) : undefined,
-            featured: Boolean(item.featured),
-          }));
+          const mapped: ResearchWork[] = data.map((item: Record<string, unknown>) => {
+            const id = String(item.id);
+            const isRoundtable = id === "minutes-from-roundtable";
+            const isCopyAndPaste = id === "copy-and-paste-governance";
+
+            const downloadUrl = item.download_url
+              ? String(item.download_url)
+              : isRoundtable
+              ? "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/book/minutes_from_roundtable.pdf"
+              : undefined;
+
+            const coverImage = item.cover_image
+              ? String(item.cover_image)
+              : isCopyAndPaste
+              ? "/images/book_cover.png"
+              : isRoundtable
+              ? "/images/media/pRoundT.webp"
+              : undefined;
+
+            return {
+              id,
+              year: Number(item.year),
+              date: item.date ? String(item.date) : undefined,
+              title: String(item.title),
+              kind: String(item.kind),
+              venue: String(item.venue || ""),
+              abstract: String(item.abstract || ""),
+              tags: Array.isArray(item.tags) ? item.tags : [],
+              status: item.status ? String(item.status) : undefined,
+              href: item.href ? String(item.href) : (downloadUrl || undefined),
+              downloadUrl,
+              coverImage,
+              featured: Boolean(item.featured),
+            };
+          });
+
+          // Ensure Minutes from the Roundtable is present
+          if (!mapped.some((item) => item.id === "minutes-from-roundtable")) {
+            const roundtableFallback = RESEARCH_WORKS.find(
+              (w) => w.id === "minutes-from-roundtable"
+            );
+            if (roundtableFallback) {
+              mapped.splice(1, 0, roundtableFallback);
+            }
+          }
+
+          return mapped;
         }
       }
     } catch (err) {

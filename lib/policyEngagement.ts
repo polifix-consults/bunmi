@@ -177,3 +177,50 @@ export const POLICY_VIDEOS: PolicyVideo[] = [
     thumbnail_url: "https://img.youtube.com/vi/8yU11bV-opg/hqdefault.jpg",
   },
 ];
+
+/**
+ * Helper to fetch policy video appearances.
+ * Returns static POLICY_VIDEOS by default, and queries Supabase table `policy_videos`
+ * when NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are present.
+ */
+export async function getPolicyVideos(): Promise<PolicyVideo[]> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const res = await fetch(
+        `${supabaseUrl}/rest/v1/policy_videos?select=*&order=year.desc`,
+        {
+          headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`,
+          },
+          next: { revalidate: 60 },
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          return data.map((item: Record<string, unknown>) => ({
+            id: String(item.id),
+            category_tag: String(item.category_tag || ""),
+            network: String(item.network || ""),
+            title: String(item.title),
+            date: String(item.date || ""),
+            year: Number(item.year || new Date().getFullYear()),
+            type: (item.type as "television" | "dialogue" | "analysis") || "television",
+            description: String(item.description || ""),
+            video_url: String(item.video_url || ""),
+            thumbnail_url: String(item.thumbnail_url || ""),
+          }));
+        }
+      }
+    } catch (err) {
+      console.warn("Supabase fetch failed for policy videos, falling back to local dataset:", err);
+    }
+  }
+
+  return POLICY_VIDEOS;
+}
+

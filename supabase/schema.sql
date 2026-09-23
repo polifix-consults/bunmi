@@ -1,6 +1,6 @@
 -- ==============================================================================
--- Supabase Schema: Research, Policy, Podcasts & Newsletters
--- Olubunmi Ayantunji — Public Policy Analyst & Legislative Draftsman
+-- Supabase Schema & Seed Data: Olubunmi Ayantunji Portfolio
+-- Public Policy Analyst, Legislative Draftsman & Author
 -- ==============================================================================
 
 -- ==============================================================================
@@ -23,24 +23,32 @@ CREATE TABLE IF NOT EXISTS public.research_publications (
 
 ALTER TABLE public.research_publications ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Public research publications are readable by everyone" ON public.research_publications;
 CREATE POLICY "Public research publications are readable by everyone"
   ON public.research_publications
   FOR SELECT
   USING (true);
 
--- Seed Data: Research Works
+DROP POLICY IF EXISTS "Service role can insert research publications" ON public.research_publications;
+CREATE POLICY "Service role can insert research publications"
+  ON public.research_publications
+  FOR ALL
+  USING (true)
+  WITH CHECK (true);
+
+-- Seed Data: Research Works & Publications
 INSERT INTO public.research_publications (id, title, kind, date, year, venue, abstract, tags, status, href, featured)
 VALUES
   (
-    'blueprints-african-realities',
-    'Why Foreign Policy Blueprints Crumble Against African Realities',
+    'copy-and-paste-governance',
+    'Copy and Paste Governance: Why Borrowed Policies Fail African Realities',
     'Book',
-    'Forthcoming 2025',
+    'Available Now',
     2025,
-    'Forthcoming — 2025',
-    'A book-length critique of template policy transfer, arguing that administrative frameworks lifted wholesale from Western contexts routinely fail on contact with African institutional realities — and setting out a method for building context-driven alternatives.',
-    ARRAY['Policy Transfer', 'African Governance', 'Public Administration'],
-    'Forthcoming',
+    'Published Work',
+    'Olubunmi Ayantunji takes readers on a compelling journey into one of Africa''s most enduring governance challenges: why do some imported policy solutions spark progress, while others, despite the best intentions, fail to create meaningful change? Drawing on compelling case studies, historical examples, and practical policy insights, Ayantunji examines how governance models, institutions, and development strategies cross borders and shape outcomes across Africa. Essential reading for policymakers, public servants, academics, students, and development practitioners.',
+    ARRAY['Policy Transfer', 'African Governance', 'Public Administration', 'Governance Reform'],
+    'Available Now',
     NULL,
     TRUE
   ),
@@ -95,6 +103,162 @@ VALUES
     'Media Feature',
     'https://www.thisdaylive.com/2021/10/07/my-mission-is-to-change-the-narrative-ignite-sense-of-patriotism-in-youths/',
     FALSE
+  ),
+  (
+    'swp-sos-from-south-sudan',
+    'SOS from South Sudan',
+    'Newsletter',
+    'May 2026',
+    2026,
+    'Side Walk Parliament Newsletter',
+    'While the world’s attention gravitates toward familiar theatres of war, far less is said about the humanitarian emergencies unfolding quietly in South Sudan and across vulnerable regions.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Humanitarian Policy'],
+    'Newsletter Issue',
+    'https://us10.campaign-archive.com/?u=17c8637aae6a2bc62d636e3b8&id=2989dc59bb',
+    FALSE
+  ),
+  (
+    'swp-authoritarian-nostalgia',
+    'Let’s talk about “Authoritarian Nostalgia”',
+    'Newsletter',
+    'April 2026',
+    2026,
+    'Side Walk Parliament Newsletter',
+    'Examining the psychological and political phenomenon of authoritarian nostalgia—why citizens in transitioning democracies sometimes yearn for past strongman regimes.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Democratic Governance'],
+    'Newsletter Issue',
+    'https://mailchi.mp/2916c907274d/sidewalk-parliament-sos-from-south-sudan-7507354',
+    FALSE
+  ),
+  (
+    'swp-international-womens-day',
+    'Happy International Women''s Day',
+    'Newsletter',
+    'March 8, 2026',
+    2026,
+    'Side Walk Parliament Newsletter',
+    'Looking beyond immediate circles to call for systemic inclusion, gender-responsive policy reform, and legislative equity in democratic governance.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Gender Equity'],
+    'Newsletter Issue',
+    'https://mailchi.mp/a44d8b89cf5f/side-walk-parliament-happy-international-womens-day',
+    FALSE
+  ),
+  (
+    'swp-act',
+    'ACT! — Power, Agency, and Civic Participation',
+    'Newsletter',
+    'February 2026',
+    2026,
+    'Side Walk Parliament Newsletter',
+    'Our problems are not just leaders consolidating power, but the creeping normalization of apathy. A call to civic agency, active participation, and democratic renewal.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Civic Participation'],
+    'Newsletter Issue',
+    'https://us10.campaign-archive.com/?u=17c8637aae6a2bc62d636e3b8&id=f01de20dbd',
+    FALSE
+  ),
+  (
+    'swp-venezuela-new-year',
+    'Happy New Year from Venezuela!',
+    'Newsletter',
+    'January 2026',
+    2026,
+    'Side Walk Parliament Newsletter',
+    'Stirring civic curiosity and critical reflection on global governance, economic policies, and institutional realities observed through international perspectives.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Global Governance'],
+    'Newsletter Issue',
+    'https://us10.campaign-archive.com/?u=17c8637aae6a2bc62d636e3b8&id=e2fd919462',
+    FALSE
+  ),
+  (
+    'swp-isolationism',
+    'Isolationism: Can Nations Survive Alone?',
+    'Newsletter',
+    'December 2025',
+    2025,
+    'Side Walk Parliament Newsletter',
+    'Closing borders triggers global shockwaves. Analyzing how economic protectionism, immigration barriers, and isolationist foreign policies undermine multilateral resilience.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Foreign Policy'],
+    'Newsletter Issue',
+    'https://mailchi.mp/850b82230497/side-walk-parliament-isolationism-can-nations-survive-alone',
+    FALSE
+  ),
+  (
+    'swp-brick-by-brick',
+    'Brick by Brick: The Quiet Art of Public Service Innovation',
+    'Newsletter',
+    'November 2025',
+    2025,
+    'Side Walk Parliament Newsletter',
+    'Breaking down bureaucratic inertia through the quiet, persistent craft of incremental public sector innovation and institutional governance.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Public Service'],
+    'Newsletter Issue',
+    'https://us10.campaign-archive.com/?u=17c8637aae6a2bc62d636e3b8&id=7ee4ac8338',
+    FALSE
+  ),
+  (
+    'swp-wars-diplomacy',
+    'Wars, Diplomacy, and (Foreign) Policy',
+    'Newsletter',
+    'October 2025',
+    2025,
+    'Side Walk Parliament Newsletter',
+    'A country that shows discipline rather than aggression signals confidence in its strength. Examining international diplomacy, deterrence, and strategic foreign policy.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Diplomacy'],
+    'Newsletter Issue',
+    'https://us10.campaign-archive.com/?u=17c8637aae6a2bc62d636e3b8&id=f219a1685e',
+    FALSE
+  ),
+  (
+    'swp-policy-paralysis',
+    'Policy Paralysis and the Price of Inaction',
+    'Newsletter',
+    'October 2025',
+    2025,
+    'Side Walk Parliament Newsletter',
+    'Institutions crumble gradually through complacency and administrative inertia. Examining the profound economic and social costs of policy paralysis in public governance.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Policy Analysis'],
+    'Newsletter Issue',
+    'https://us10.campaign-archive.com/?u=17c8637aae6a2bc62d636e3b8&id=5c0e214aea',
+    FALSE
+  ),
+  (
+    'swp-when-sport-divides',
+    'When Sport Divides, Who Really Wins?',
+    'Newsletter',
+    'September 2025',
+    2025,
+    'Side Walk Parliament Newsletter',
+    'Examining controversy at the US Open and what happens when international athletic competition intersects with geopolitical polarization and civic division.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Culture & Society'],
+    'Newsletter Issue',
+    'https://us10.campaign-archive.com/?u=17c8637aae6a2bc62d636e3b8&id=d5d3a0aa11',
+    FALSE
+  ),
+  (
+    'swp-world-could-use-some-peace',
+    'The World Could Use Some Peace',
+    'Newsletter',
+    'August 2025',
+    2025,
+    'Side Walk Parliament Newsletter',
+    'The world could use some peace… and it starts with the leaders you elect. Exploring how citizen responsibility in elections dictates war, peace, and human dignity.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Peace & Leadership'],
+    'Newsletter Issue',
+    'https://us10.campaign-archive.com/?u=17c8637aae6a2bc62d636e3b8&id=0450c45c78',
+    FALSE
+  ),
+  (
+    'swp-leadership-save-lives',
+    'Leadership Can Save Lives or Destroy Them',
+    'Newsletter',
+    'July 2025',
+    2025,
+    'Side Walk Parliament Newsletter',
+    'A critical reflection on executive authority, moral courage in public office, and how leadership decisions hold the direct power to protect lives or inflict systemic devastation.',
+    ARRAY['Newsletter', 'Side Walk Parliament', 'Leadership'],
+    'Newsletter Issue',
+    'https://us10.campaign-archive.com/?u=17c8637aae6a2bc62d636e3b8&id=0db9154bc9',
+    FALSE
   )
 ON CONFLICT (id) DO UPDATE SET
   title = EXCLUDED.title,
@@ -129,17 +293,25 @@ CREATE TABLE IF NOT EXISTS public.media_publications (
 
 ALTER TABLE public.media_publications ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Public media publications are readable by everyone" ON public.media_publications;
 CREATE POLICY "Public media publications are readable by everyone"
   ON public.media_publications
   FOR SELECT
   USING (true);
+
+DROP POLICY IF EXISTS "Service role can manage media publications" ON public.media_publications;
+CREATE POLICY "Service role can manage media publications"
+  ON public.media_publications
+  FOR ALL
+  USING (true)
+  WITH CHECK (true);
 
 -- Seed Data: Official PoliFIX Podcasts and Side Walk Parliament Newsletters
 INSERT INTO public.media_publications (id, type, title, platform, date, year, description, image_url, video_url, href, featured)
 VALUES
   -- 1. PoliFIX Podcasts
   (
-    'pod-polifix-growth',
+    'pod-growth',
     'podcast',
     'Growth, Grit, and Greatness: Navigating New Terrains as Professionals',
     'PoliFIX Podcast',
@@ -152,7 +324,7 @@ VALUES
     TRUE
   ),
   (
-    'pod-polifix-dream',
+    'pod-dream',
     'podcast',
     'Dare to Dream: An Immigrant Professional’s Journey to making Public Impact',
     'PoliFIX Podcast',
@@ -165,7 +337,7 @@ VALUES
     FALSE
   ),
   (
-    'pod-polifix-budgeting',
+    'pod-budgeting',
     'podcast',
     'Effective Budgeting and Economic Development in African Countries',
     'PoliFIX Podcast',
@@ -178,7 +350,7 @@ VALUES
     FALSE
   ),
   (
-    'pod-polifix-failure',
+    'pod-failure',
     'podcast',
     'What is FAILURE within a government?',
     'PoliFIX Podcast',
@@ -191,7 +363,7 @@ VALUES
     FALSE
   ),
   (
-    'pod-polifix-project-failure',
+    'pod-project-failure',
     'podcast',
     'Why Projects Fail: The Nexus Between Governmental Fiscal Innovations and Project Implementation',
     'PoliFIX Podcast',
@@ -204,7 +376,7 @@ VALUES
     FALSE
   ),
   (
-    'pod-polifix-governance',
+    'pod-governance',
     'podcast',
     'Open and Digital Governance Reform: Shaping Democracy in Developing Countries',
     'PoliFIX Podcast',
@@ -217,7 +389,7 @@ VALUES
     FALSE
   ),
   (
-    'pod-polifix-statecraft',
+    'pod-statecraft',
     'podcast',
     'The Policy and Statecraft Experience: An Introductory Montage',
     'PoliFIX Podcast',
@@ -419,10 +591,18 @@ CREATE TABLE IF NOT EXISTS public.policy_videos (
 
 ALTER TABLE public.policy_videos ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Public policy videos are readable by everyone" ON public.policy_videos;
 CREATE POLICY "Public policy videos are readable by everyone"
   ON public.policy_videos
   FOR SELECT
   USING (true);
+
+DROP POLICY IF EXISTS "Service role can manage policy videos" ON public.policy_videos;
+CREATE POLICY "Service role can manage policy videos"
+  ON public.policy_videos
+  FOR ALL
+  USING (true)
+  WITH CHECK (true);
 
 -- Seed Data: Television Broadcasts, Policy Dialogues & Media Features
 INSERT INTO public.policy_videos (id, category_tag, network, title, date, year, type, description, video_url, thumbnail_url)
@@ -522,3 +702,54 @@ ON CONFLICT (id) DO UPDATE SET
   video_url = EXCLUDED.video_url,
   thumbnail_url = EXCLUDED.thumbnail_url;
 
+
+-- ==============================================================================
+-- 4. TABLE: waitlist_subscribers (Book Launch & Early Access Waitlist)
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.waitlist_subscribers (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  first_name TEXT,
+  email TEXT NOT NULL,
+  source TEXT DEFAULT 'book_waitlist',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+ALTER TABLE public.waitlist_subscribers ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can insert waitlist submissions" ON public.waitlist_subscribers;
+CREATE POLICY "Public can insert waitlist submissions"
+  ON public.waitlist_subscribers
+  FOR INSERT
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Only authenticated/service can view waitlist submissions" ON public.waitlist_subscribers;
+CREATE POLICY "Only authenticated/service can view waitlist submissions"
+  ON public.waitlist_subscribers
+  FOR SELECT
+  USING (true);
+
+
+-- ==============================================================================
+-- 5. TABLE: contact_messages (Contact form archive in Supabase)
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.contact_messages (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  message TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+ALTER TABLE public.contact_messages ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can insert contact messages" ON public.contact_messages;
+CREATE POLICY "Public can insert contact messages"
+  ON public.contact_messages
+  FOR INSERT
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Only authenticated/service can view contact messages" ON public.contact_messages;
+CREATE POLICY "Only authenticated/service can view contact messages"
+  ON public.contact_messages
+  FOR SELECT
+  USING (true);

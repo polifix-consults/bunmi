@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { CtaBand } from "@/components/sections/CtaBand";
 import { MediaPageClient } from "@/components/sections/MediaPageClient";
+import { getMediaItems } from "@/lib/media";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,10 +18,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function MediaPage() {
+export default async function MediaPage() {
+  const items = await getMediaItems();
+
   return (
     <main id="main">
-      <MediaPageClient />
+      <MediaPageClient initialItems={items} />
       <CtaBand
         eyebrow="Media enquiries"
         title="Booking commentary or a panel appearance?"
@@ -31,3 +34,4 @@ export default function MediaPage() {
     </main>
   );
 }
+

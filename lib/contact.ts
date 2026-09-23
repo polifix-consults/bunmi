@@ -1,4 +1,5 @@
 import { SITE } from "@/lib/site";
+import { saveContactMessageToSupabase } from "@/lib/supabase";
 
 export type ContactFormData = {
   name: string;
@@ -13,7 +14,7 @@ export type ContactResponse = {
 };
 
 /**
- * Sends contact form submissions to Olubunmi Ayantunji's email.
+ * Sends contact form submissions to Olubunmi Ayantunji's email and archives to Supabase.
  * Supports Web3Forms, Formspree, or FormSubmit fallback with zero configuration required.
  */
 export async function submitContactForm(data: ContactFormData): Promise<ContactResponse> {
@@ -21,6 +22,13 @@ export async function submitContactForm(data: ContactFormData): Promise<ContactR
   if (data.botcheck && data.botcheck.trim().length > 0) {
     return { success: true, message: "Message sent successfully." };
   }
+
+  // Asynchronously archive copy into Supabase
+  saveContactMessageToSupabase({
+    name: data.name,
+    email: data.email,
+    message: data.message,
+  }).catch(() => {});
 
   const emailRecipient = SITE.email || "olubunmiayantunji@gmail.com";
   const web3formsKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();

@@ -6,6 +6,7 @@ import { Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Field, Input } from "@/components/ui/Field";
 import { cn } from "@/lib/cn";
+import { submitWaitlistToSupabase } from "@/lib/supabase";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -17,8 +18,7 @@ type WaitlistFormProps = {
 };
 
 /**
- * Waitlist capture. Currently resolves locally — wire `submit()` to the
- * mailing-list provider (or a Next.js route handler) at integration time.
+ * Waitlist capture. Submits directly to Supabase table waitlist_subscribers.
  */
 export function WaitlistForm({
   className,
@@ -32,11 +32,15 @@ export function WaitlistForm({
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!values.email.trim()) return;
     setStatus("submitting");
 
     try {
-      // TODO(integration): POST to the CMS/ESP endpoint.
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      await submitWaitlistToSupabase({
+        firstName: values.firstName,
+        email: values.email,
+        source: "book_launch_waitlist",
+      });
       setStatus("success");
     } catch {
       setStatus("error");

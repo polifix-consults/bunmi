@@ -13,7 +13,11 @@ const featuredMedia =
   mediaAppearances.find((m) => m.title.includes("Open and Digital Governance")) ||
   mediaAppearances[0];
 
-export function MediaPageClient() {
+type MediaPageClientProps = {
+  initialItems?: MediaItem[];
+};
+
+export function MediaPageClient({ initialItems }: MediaPageClientProps) {
   const [modalVideo, setModalVideo] = useState<{
     isOpen: boolean;
     videoUrl: string;
@@ -55,6 +59,7 @@ export function MediaPageClient() {
       />
 
       <MediaShowcase
+        items={initialItems}
         onSelectCard={handleSelectCard}
       />
 

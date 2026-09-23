@@ -20,7 +20,11 @@ import { cn } from "@/lib/cn";
 
 type VideoFilter = "all" | "television" | "dialogue";
 
-export function PolicyEngagementClient() {
+type PolicyEngagementClientProps = {
+  initialVideos?: PolicyVideo[];
+};
+
+export function PolicyEngagementClient({ initialVideos }: PolicyEngagementClientProps) {
   const reduceMotion = useReducedMotion();
   const [activeVideoFilter, setActiveVideoFilter] = useState<VideoFilter>("all");
   const [modalVideo, setModalVideo] = useState<{
@@ -35,15 +39,19 @@ export function PolicyEngagementClient() {
     platform: "",
   });
 
+  const allVideos = useMemo(() => {
+    return initialVideos && initialVideos.length > 0 ? initialVideos : POLICY_VIDEOS;
+  }, [initialVideos]);
+
   const filteredVideos = useMemo(() => {
     if (activeVideoFilter === "television") {
-      return POLICY_VIDEOS.filter((v) => v.type === "television");
+      return allVideos.filter((v) => v.type === "television");
     }
     if (activeVideoFilter === "dialogue") {
-      return POLICY_VIDEOS.filter((v) => v.type === "dialogue" || v.type === "analysis");
+      return allVideos.filter((v) => v.type === "dialogue" || v.type === "analysis");
     }
-    return POLICY_VIDEOS;
-  }, [activeVideoFilter]);
+    return allVideos;
+  }, [activeVideoFilter, allVideos]);
 
   const handleOpenVideo = (video: PolicyVideo) => {
     setModalVideo({
@@ -54,8 +62,8 @@ export function PolicyEngagementClient() {
     });
   };
 
-  const tvCount = POLICY_VIDEOS.filter((v) => v.type === "television").length;
-  const dialogueCount = POLICY_VIDEOS.filter((v) => v.type === "dialogue" || v.type === "analysis").length;
+  const tvCount = allVideos.filter((v) => v.type === "television").length;
+  const dialogueCount = allVideos.filter((v) => v.type === "dialogue" || v.type === "analysis").length;
 
   return (
     <div className="w-full bg-white font-inter text-slate-900 overflow-hidden">
@@ -167,7 +175,7 @@ export function PolicyEngagementClient() {
             </span>
 
             {[
-              { key: "all", label: `All Appearances (${POLICY_VIDEOS.length})` },
+              { key: "all", label: `All Appearances (${allVideos.length})` },
               { key: "television", label: `Television Broadcasts (${tvCount})` },
               { key: "dialogue", label: `Civic & Diaspora Dialogues (${dialogueCount})` },
             ].map(({ key, label }) => {

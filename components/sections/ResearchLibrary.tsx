@@ -17,24 +17,35 @@ import { cn } from "@/lib/cn";
  * bibliography. Featured items are lifted out of the index into a lead block.
  */
 
-/** Newest first — the order the catalogue is numbered in. */
-const ORDERED = [...RESEARCH].sort((a, b) => b.year - a.year);
-const FEATURED = ORDERED.filter((w) => w.featured);
-const INDEXED = ORDERED.filter((w) => !w.featured);
+type ResearchLibraryProps = {
+  initialWorks?: ResearchWork[];
+};
 
-/** Stable catalogue number per work, assigned once over the indexed set. */
-const CATALOGUE = new Map(INDEXED.map((w, i) => [w.id, i + 1]));
-
-const FILTERS = ["All", ...Array.from(new Set(INDEXED.map((w) => w.kind)))] as const;
-type Filter = (typeof FILTERS)[number];
-
-export function ResearchLibrary() {
+export function ResearchLibrary({ initialWorks }: ResearchLibraryProps) {
   const reduceMotion = useReducedMotion();
-  const [filter, setFilter] = useState<Filter>("All");
+  const [filter, setFilter] = useState<string>("All");
+
+  const works = useMemo(() => {
+    const list = initialWorks && initialWorks.length > 0 ? initialWorks : RESEARCH;
+    return [...list].sort((a, b) => b.year - a.year);
+  }, [initialWorks]);
+
+  const featured = useMemo(() => works.filter((w) => w.featured), [works]);
+  const indexed = useMemo(() => works.filter((w) => !w.featured), [works]);
+
+  const catalogue = useMemo(
+    () => new Map(indexed.map((w, i) => [w.id, i + 1])),
+    [indexed],
+  );
+
+  const filters = useMemo(
+    () => ["All", ...Array.from(new Set(indexed.map((w) => w.kind)))],
+    [indexed],
+  );
 
   const shown = useMemo(
-    () => (filter === "All" ? INDEXED : INDEXED.filter((w) => w.kind === filter)),
-    [filter],
+    () => (filter === "All" ? indexed : indexed.filter((w) => w.kind === filter)),
+    [filter, indexed],
   );
 
   return (
@@ -54,7 +65,7 @@ export function ResearchLibrary() {
         <h1 className="sr-only">Research &amp; Publications</h1>
 
         {/* ==================== FEATURED ==================== */}
-        {FEATURED.map((work) => (
+        {featured.map((work) => (
           <FeaturedWork key={work.id} work={work} reduceMotion={!!reduceMotion} />
         ))}
 
@@ -86,7 +97,7 @@ export function ResearchLibrary() {
             <span className="font-inter text-[11px] uppercase tracking-[0.2em] text-slate-400">
               Filter
             </span>
-            {FILTERS.map((f) => {
+            {filters.map((f) => {
               const active = filter === f;
               return (
                 <button
@@ -126,7 +137,7 @@ export function ResearchLibrary() {
                   exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
                   transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <IndexRow work={work} no={CATALOGUE.get(work.id)!} />
+                  <IndexRow work={work} no={catalogue.get(work.id) || 1} />
                 </motion.li>
               ))}
             </AnimatePresence>

@@ -7,12 +7,14 @@ import { Reveal } from "@/components/ui/Reveal";
 import { MEDIA_ITEMS, type MediaItem } from "@/lib/media";
 
 type MediaShowcaseProps = {
+  items?: MediaItem[];
   limit?: number;
   activeTitle?: string;
   onSelectCard?: (item: MediaItem) => void;
 };
 
 export function MediaShowcase({
+  items,
   limit,
   activeTitle,
   onSelectCard,
@@ -20,9 +22,10 @@ export function MediaShowcase({
   const reduceMotion = useReducedMotion();
 
   const filteredItems = useMemo(() => {
-    const list = MEDIA_ITEMS.filter((item) => item.type === "podcast");
+    const source = items && items.length > 0 ? items : MEDIA_ITEMS;
+    const list = source.filter((item) => item.type === "podcast");
     return limit ? list.slice(0, limit) : list;
-  }, [limit]);
+  }, [items, limit]);
 
   return (
     <section

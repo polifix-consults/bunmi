@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PolicyEngagementClient } from "@/components/sections/PolicyEngagementClient";
+import { getPolicyVideos } from "@/lib/policyEngagement";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,10 +18,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PolicyEngagementPage() {
+export default async function PolicyEngagementPage() {
+  const videos = await getPolicyVideos();
+
   return (
     <main id="main">
-      <PolicyEngagementClient />
+      <PolicyEngagementClient initialVideos={videos} />
       <CtaBand
         eyebrow="Consulting & Advisory"
         title="Bring rigorous policy thinking to your institution."
@@ -31,3 +34,4 @@ export default function PolicyEngagementPage() {
     </main>
   );
 }
+

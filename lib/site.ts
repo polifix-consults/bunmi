@@ -24,7 +24,7 @@ export const SITE = {
   description:
     "Olubunmi (Bunmi) Ayantunji is a governance and policy professional whose work spans governance reform, public policy design, and strategic innovation across Nigeria and Canada.",
   locale: "en_CA",
-  email: "olubunmiayantunji@gmail.com",
+  email: "mojolarichards@gmail.com",
   locations: "Available to travel anywhere",
   socials: {
     linkedin: "https://www.linkedin.com/in/bunmi-ayantunji-860355134",

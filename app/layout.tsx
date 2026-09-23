@@ -36,6 +36,14 @@ export const metadata: Metadata = {
   publisher: SITE.name,
   applicationName: SITE.name,
   alternates: { canonical: "/" },
+  icons: {
+    icon: [
+      { url: "/icon.png" },
+      { url: "/images/media/pfp.png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     type: "website",
     url: SITE.url,

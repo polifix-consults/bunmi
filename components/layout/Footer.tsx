@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Facebook, Instagram, Linkedin, Mail, MapPin, Twitter } from "lucide-react";
 
@@ -25,20 +24,6 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Brand & Social */}
           <div className="max-w-md lg:col-span-6 space-y-4">
-            <Link href="/" aria-label="Home" className="group inline-flex items-center gap-2.5 sm:gap-3">
-              <div className="relative h-8 w-8 sm:h-9 sm:w-9 shrink-0 overflow-hidden rounded-full border border-slate-200 bg-slate-100 shadow-xs">
-                <Image
-                  src="/images/media/pfp.png"
-                  alt="Olubunmi Ayantunji"
-                  width={36}
-                  height={36}
-                  className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <span className="font-inter text-xs sm:text-[13px] font-normal uppercase tracking-[0.2em] text-slate-700 transition-colors duration-200 group-hover:text-slate-900">
-                OLUBUNMI AYANTUNJI.
-              </span>
-            </Link>
             <p className="font-inter text-sm leading-relaxed text-slate-600 font-light">
               Connect with Me on Social Media
             </p>

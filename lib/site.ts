@@ -1,3 +1,17 @@
+function getSiteUrl(): string {
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (envUrl && envUrl.length > 0) {
+    return envUrl.startsWith("http://") || envUrl.startsWith("https://")
+      ? envUrl
+      : `https://${envUrl}`;
+  }
+  const vercelUrl = process.env.VERCEL_URL?.trim();
+  if (vercelUrl && vercelUrl.length > 0) {
+    return `https://${vercelUrl}`;
+  }
+  return "https://olubunmiayantunji.com";
+}
+
 /**
  * Single source of truth for site-wide identity, URLs and contact channels.
  * Replace the placeholder domain, email and social handles before launch.
@@ -5,7 +19,7 @@
 export const SITE = {
   name: "Olubunmi Ayantunji",
   shortName: "Olubunmi Ayantunji",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://olubunmiayantunji.com",
+  url: getSiteUrl(),
   tagline: "Bridging the Gap Between Policy and the People",
   description:
     "Olubunmi (Bunmi) Ayantunji is a governance and policy professional whose work spans governance reform, public policy design, and strategic innovation across Nigeria and Canada.",

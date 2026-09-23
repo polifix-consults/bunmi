@@ -15,8 +15,16 @@ const inter = Inter({
   display: "swap",
 });
 
+const metadataBaseUrl = (() => {
+  try {
+    return new URL(SITE.url);
+  } catch {
+    return new URL("https://olubunmiayantunji.com");
+  }
+})();
+
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE.url),
+  metadataBase: metadataBaseUrl,
   title: {
     default: `${SITE.name} | Public Policy Analyst & Legislative Draftsman`,
     template: `%s | ${SITE.name}`,

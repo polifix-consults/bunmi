@@ -36,7 +36,7 @@ export default function OpengraphImage() {
               fontFamily: "system-ui, sans-serif",
             }}
           >
-            Public Policy · Governance
+            Legal & Public Policy Practitioner
           </div>
         </div>
 
@@ -83,7 +83,7 @@ export default function OpengraphImage() {
             fontFamily: "system-ui, sans-serif",
           }}
         >
-          <span>Legislative Draftsman · Policy Analyst · Author</span>
+          <span>Strategic Governance · Legislation · Institutional Development</span>
           <span>{SITE.locations}</span>
         </div>
       </div>

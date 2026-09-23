@@ -26,7 +26,7 @@ const metadataBaseUrl = (() => {
 export const metadata: Metadata = {
   metadataBase: metadataBaseUrl,
   title: {
-    default: `${SITE.name} | Public Policy Analyst & Legislative Draftsman`,
+    default: `${SITE.name} | ${SITE.tagline}`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,

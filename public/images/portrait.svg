@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" role="img" aria-label="Portrait placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#EFE8D9"/>
+      <stop offset="0.55" stop-color="#E7DFCD"/>
+      <stop offset="1" stop-color="#F6F1E6"/>
+    </linearGradient>
+    <linearGradient id="figure" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#2B2520"/>
+      <stop offset="1" stop-color="#171310"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7A2135"/>
+      <stop offset="1" stop-color="#5A1826"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.32" r="0.5">
+      <stop offset="0" stop-color="#FBF8F1" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#FBF8F1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="1600" fill="url(#bg)"/>
+  <circle cx="600" cy="512" r="470" fill="url(#halo)"/>
+
+  <!-- Editorial rule grid -->
+  <g stroke="#D8CFBB" stroke-width="1" opacity="0.7">
+    <line x1="0" y1="1180" x2="1200" y2="1180"/>
+    <line x1="0" y1="1244" x2="1200" y2="1244"/>
+    <line x1="152" y1="0" x2="152" y2="1600"/>
+  </g>
+
+  <!-- Shoulders / torso -->
+  <path d="M600 742c186 0 338 128 372 300l46 558H182l46-558c34-172 186-300 372-300z" fill="url(#figure)"/>
+  <!-- Jacket lapels -->
+  <path d="M600 742l-92 60 60 300-84 498h-92l72-560z" fill="#0F0C0A" opacity="0.55"/>
+  <path d="M600 742l92 60-60 300 84 498h92l-72-560z" fill="#0F0C0A" opacity="0.55"/>
+  <!-- Shirt -->
+  <path d="M600 748l74 48-74 236-74-236z" fill="#F1EADC"/>
+  <!-- Tie in the accent maroon -->
+  <path d="M600 796l30 30-24 226-6 40-6-40-24-226z" fill="url(#accent)"/>
+
+  <!-- Neck + head -->
+  <path d="M552 636h96v128h-96z" fill="#2B2520"/>
+  <ellipse cx="600" cy="470" rx="164" ry="196" fill="url(#figure)"/>
+  <path d="M436 452c0-104 74-176 164-176s164 72 164 176c0 22-6 40-18 40-30 0-52-64-146-64s-116 64-146 64c-12 0-18-18-18-40z" fill="#0F0C0A"/>
+
+  <!-- Accent mark -->
+  <rect x="152" y="1310" width="118" height="4" fill="url(#accent)"/>
+</svg>

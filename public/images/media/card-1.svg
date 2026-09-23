@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200" role="img" aria-label="Television panel discussion still placeholder">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#241E18"/>
+      <stop offset="1" stop-color="#0E0B09"/>
+    </linearGradient>
+    <radialGradient id="lamp1" cx="0.5" cy="0.22" r="0.6">
+      <stop offset="0" stop-color="#7A2135" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#7A2135" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg1)"/>
+  <rect width="900" height="1200" fill="url(#lamp1)"/>
+
+  <!-- Map-like backdrop -->
+  <g opacity="0.24" fill="none" stroke="#F6F1E6" stroke-width="2">
+    <path d="M300 240c60-40 150-20 190 40s10 150-60 180-160-10-180-80 10-110 50-140z"/>
+    <path d="M330 330h220M420 250v250M360 420h180"/>
+  </g>
+
+  <!-- Standing figure, three-quarter -->
+  <g fill="#080606">
+    <ellipse cx="450" cy="646" rx="96" ry="112"/>
+    <path d="M450 774c126 0 230 84 250 208l30 218H170l30-218c20-124 124-208 250-208z"/>
+  </g>
+  <path d="M450 780l58 38-58 186-58-186z" fill="#EFE8D9" opacity="0.9"/>
+  <path d="M450 818l24 24-20 176-4 30-4-30-20-176z" fill="#7A2135"/>
+
+  <!-- Studio floor line + accent -->
+  <rect x="0" y="1064" width="900" height="4" fill="#7A2135" opacity="0.75"/>
+  <g fill="#F6F1E6" opacity="0.12">
+    <rect x="80" y="1104" width="300" height="18"/>
+    <rect x="80" y="1140" width="180" height="12"/>
+  </g>
+  <rect width="900" height="1200" fill="#000" opacity="0.12"/>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Broadcast studio still placeholder">
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#221C16"/>
+      <stop offset="0.6" stop-color="#171310"/>
+      <stop offset="1" stop-color="#0D0A08"/>
+    </linearGradient>
+    <radialGradient id="key" cx="0.62" cy="0.3" r="0.62">
+      <stop offset="0" stop-color="#7A2135" stop-opacity="0.5"/>
+      <stop offset="0.55" stop-color="#7A2135" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#7A2135" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="deskTop" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2E271F"/>
+      <stop offset="1" stop-color="#1C1712"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#room)"/>
+  <rect width="1920" height="1080" fill="url(#key)"/>
+
+  <!-- Studio backdrop panels -->
+  <g opacity="0.5">
+    <rect x="120" y="120" width="360" height="620" fill="#2A231C"/>
+    <rect x="520" y="200" width="360" height="540" fill="#241E18"/>
+    <rect x="1240" y="150" width="300" height="590" fill="#241E18"/>
+    <rect x="1580" y="240" width="220" height="500" fill="#2A231C"/>
+  </g>
+  <g stroke="#3A3128" stroke-width="2" opacity="0.7">
+    <line x1="0" y1="742" x2="1920" y2="742"/>
+    <line x1="0" y1="120" x2="1920" y2="120"/>
+  </g>
+
+  <!-- Seated figures at the desk -->
+  <g fill="#0B0908">
+    <ellipse cx="700" cy="600" rx="82" ry="96"/>
+    <path d="M700 712c104 0 190 68 208 168l14 84H478l14-84c18-100 104-168 208-168z"/>
+    <ellipse cx="1180" cy="616" rx="76" ry="90"/>
+    <path d="M1180 722c98 0 180 66 196 160l12 82H972l12-82c16-94 98-160 196-160z"/>
+  </g>
+
+  <!-- Desk -->
+  <rect x="0" y="878" width="1920" height="30" fill="url(#deskTop)"/>
+  <rect x="0" y="908" width="1920" height="172" fill="#100D0A"/>
+  <rect x="0" y="874" width="1920" height="4" fill="#7A2135" opacity="0.8"/>
+
+  <!-- Lower-third bar -->
+  <g>
+    <rect x="120" y="944" width="8" height="72" fill="#7A2135"/>
+    <rect x="148" y="944" width="620" height="30" fill="#F6F1E6" opacity="0.16"/>
+    <rect x="148" y="988" width="400" height="20" fill="#F6F1E6" opacity="0.1"/>
+  </g>
+
+  <!-- Vignette -->
+  <rect width="1920" height="1080" fill="#000" opacity="0.16"/>
+</svg>

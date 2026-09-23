@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Civic engagement town hall still placeholder">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#1B1A16"/>
+      <stop offset="1" stop-color="#090807"/>
+    </linearGradient>
+    <radialGradient id="glow5" cx="0.5" cy="0.18" r="0.62">
+      <stop offset="0" stop-color="#F6F1E6" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#F6F1E6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg5)"/>
+  <rect width="1600" height="1200" fill="url(#glow5)"/>
+
+  <!-- Ballot box on a stage plinth -->
+  <g>
+    <rect x="700" y="300" width="200" height="170" rx="8" fill="#2C251E"/>
+    <rect x="742" y="270" width="116" height="16" rx="4" fill="#7A2135"/>
+    <rect x="768" y="196" width="64" height="86" fill="#EFE8D9" opacity="0.9"/>
+  </g>
+
+  <!-- Crowd rows, receding -->
+  <g fill="#0A0908">
+    <g opacity="0.6">
+      <circle cx="180" cy="720" r="44"/><circle cx="330" cy="712" r="44"/>
+      <circle cx="480" cy="722" r="44"/><circle cx="630" cy="710" r="44"/>
+      <circle cx="960" cy="712" r="44"/><circle cx="1110" cy="722" r="44"/>
+      <circle cx="1260" cy="710" r="44"/><circle cx="1420" cy="720" r="44"/>
+      <rect x="120" y="770" width="1360" height="120"/>
+    </g>
+    <g opacity="0.85">
+      <circle cx="250" cy="880" r="58"/><circle cx="440" cy="890" r="58"/>
+      <circle cx="640" cy="874" r="58"/><circle cx="860" cy="888" r="58"/>
+      <circle cx="1060" cy="876" r="58"/><circle cx="1270" cy="890" r="58"/>
+      <rect x="60" y="946" width="1480" height="140"/>
+    </g>
+    <g>
+      <circle cx="360" cy="1046" r="72"/><circle cx="620" cy="1058" r="72"/>
+      <circle cx="900" cy="1042" r="72"/><circle cx="1180" cy="1058" r="72"/>
+      <rect x="0" y="1120" width="1600" height="80"/>
+    </g>
+  </g>
+
+  <!-- Raised hands -->
+  <g stroke="#0A0908" stroke-width="18" stroke-linecap="round">
+    <path d="M500 950v-90"/>
+    <path d="M1000 940v-100"/>
+    <path d="M1340 962v-80"/>
+  </g>
+
+  <rect x="0" y="656" width="1600" height="3" fill="#7A2135" opacity="0.7"/>
+  <rect width="1600" height="1200" fill="#000" opacity="0.14"/>
+</svg>

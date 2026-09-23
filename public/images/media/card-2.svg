@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Podcast studio still placeholder">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1F1A15"/>
+      <stop offset="1" stop-color="#0B0908"/>
+    </linearGradient>
+    <radialGradient id="lamp2" cx="0.3" cy="0.28" r="0.55">
+      <stop offset="0" stop-color="#8A8276" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#8A8276" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg2)"/>
+  <rect width="1600" height="1200" fill="url(#lamp2)"/>
+
+  <!-- Acoustic foam grid -->
+  <g opacity="0.16" fill="#F6F1E6">
+    <g id="foamRow">
+      <rect x="60" y="60" width="70" height="70"/>
+      <rect x="170" y="60" width="70" height="70"/>
+      <rect x="280" y="60" width="70" height="70"/>
+      <rect x="1250" y="60" width="70" height="70"/>
+      <rect x="1360" y="60" width="70" height="70"/>
+      <rect x="1470" y="60" width="70" height="70"/>
+    </g>
+    <use href="#foamRow" y="110"/>
+    <use href="#foamRow" y="220"/>
+    <use href="#foamRow" y="330"/>
+  </g>
+
+  <!-- Two seated figures -->
+  <g fill="#070505">
+    <ellipse cx="520" cy="596" rx="86" ry="100"/>
+    <path d="M520 708c112 0 204 74 220 180l16 116H284l16-116c16-106 108-180 220-180z"/>
+    <ellipse cx="1090" cy="620" rx="80" ry="94"/>
+    <path d="M1090 726c104 0 190 70 204 168l14 110H872l14-110c14-98 100-168 204-168z"/>
+  </g>
+
+  <!-- Boom mic -->
+  <g stroke="#3E352B" stroke-width="10" fill="none" stroke-linecap="round">
+    <path d="M800 250v210"/>
+    <path d="M700 250h200"/>
+  </g>
+  <rect x="770" y="452" width="60" height="150" rx="30" fill="#7A2135"/>
+  <rect x="786" y="602" width="28" height="90" fill="#2E271F"/>
+  <rect x="736" y="692" width="128" height="16" rx="8" fill="#2E271F"/>
+
+  <!-- Desk -->
+  <rect x="0" y="1004" width="1600" height="196" fill="#100D0A"/>
+  <rect x="0" y="1000" width="1600" height="4" fill="#7A2135" opacity="0.8"/>
+  <!-- Waveform -->
+  <g fill="#F6F1E6" opacity="0.2">
+    <rect x="120" y="1080" width="10" height="40"/>
+    <rect x="146" y="1062" width="10" height="76"/>
+    <rect x="172" y="1092" width="10" height="16"/>
+    <rect x="198" y="1050" width="10" height="100"/>
+    <rect x="224" y="1074" width="10" height="52"/>
+    <rect x="250" y="1088" width="10" height="24"/>
+    <rect x="276" y="1058" width="10" height="84"/>
+    <rect x="302" y="1082" width="10" height="36"/>
+  </g>
+  <rect width="1600" height="1200" fill="#000" opacity="0.12"/>
+</svg>

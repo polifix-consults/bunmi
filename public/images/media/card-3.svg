@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Economic data broadcast still placeholder">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#1D1A22"/>
+      <stop offset="1" stop-color="#0A0809"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#7A2135" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#7A2135" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg3)"/>
+
+  <!-- Data wall -->
+  <g stroke="#F6F1E6" stroke-width="1" opacity="0.14">
+    <line x1="120" y1="200" x2="1480" y2="200"/>
+    <line x1="120" y1="360" x2="1480" y2="360"/>
+    <line x1="120" y1="520" x2="1480" y2="520"/>
+    <line x1="120" y1="680" x2="1480" y2="680"/>
+    <line x1="120" y1="840" x2="1480" y2="840"/>
+  </g>
+
+  <g fill="url(#bar3)">
+    <rect x="200" y="560" width="96" height="280"/>
+    <rect x="340" y="430" width="96" height="410"/>
+    <rect x="480" y="620" width="96" height="220"/>
+    <rect x="620" y="330" width="96" height="510"/>
+    <rect x="760" y="500" width="96" height="340"/>
+  </g>
+
+  <!-- Trend line -->
+  <polyline points="248,540 388,410 528,600 668,310 808,480 948,250 1088,380 1228,210"
+    fill="none" stroke="#F6F1E6" stroke-width="6" opacity="0.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#F6F1E6" opacity="0.85">
+    <circle cx="948" cy="250" r="12"/>
+    <circle cx="1228" cy="210" r="12"/>
+  </g>
+
+  <!-- Presenter silhouette, right third -->
+  <g fill="#050404" opacity="0.94">
+    <ellipse cx="1290" cy="640" rx="88" ry="102"/>
+    <path d="M1290 754c118 0 214 78 230 190l18 126h-496l18-126c16-112 112-190 230-190z"/>
+  </g>
+
+  <rect x="0" y="1040" width="1600" height="160" fill="#0A0808"/>
+  <rect x="0" y="1036" width="1600" height="4" fill="#7A2135" opacity="0.8"/>
+  <g fill="#F6F1E6" opacity="0.14">
+    <rect x="120" y="1090" width="360" height="18"/>
+    <rect x="120" y="1126" width="220" height="12"/>
+  </g>
+  <rect width="1600" height="1200" fill="#000" opacity="0.14"/>
+</svg>

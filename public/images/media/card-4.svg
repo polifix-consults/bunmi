@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Constitutional review broadcast still placeholder">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#232019"/>
+      <stop offset="1" stop-color="#0C0A08"/>
+    </linearGradient>
+    <linearGradient id="doc4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6F1E6" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#CFC5AF" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg4)"/>
+
+  <!-- Columned chamber backdrop -->
+  <g fill="#F6F1E6" opacity="0.08">
+    <rect x="140" y="120" width="90" height="700"/>
+    <rect x="330" y="120" width="90" height="700"/>
+    <rect x="1180" y="120" width="90" height="700"/>
+    <rect x="1370" y="120" width="90" height="700"/>
+  </g>
+  <rect x="0" y="120" width="1600" height="10" fill="#F6F1E6" opacity="0.1"/>
+
+  <!-- Open document / gazette -->
+  <g transform="rotate(-4 800 620)">
+    <rect x="560" y="380" width="480" height="470" fill="url(#doc4)"/>
+    <g fill="#211D17" opacity="0.42">
+      <rect x="606" y="440" width="250" height="20"/>
+      <rect x="606" y="500" width="388" height="10"/>
+      <rect x="606" y="530" width="388" height="10"/>
+      <rect x="606" y="560" width="330" height="10"/>
+      <rect x="606" y="610" width="388" height="10"/>
+      <rect x="606" y="640" width="352" height="10"/>
+      <rect x="606" y="690" width="388" height="10"/>
+      <rect x="606" y="720" width="290" height="10"/>
+    </g>
+    <rect x="606" y="784" width="120" height="6" fill="#7A2135"/>
+  </g>
+
+  <!-- Gavel -->
+  <g transform="rotate(28 1220 900)">
+    <rect x="1120" y="884" width="230" height="26" rx="13" fill="#3A3128"/>
+    <rect x="1076" y="856" width="92" height="82" rx="14" fill="#7A2135"/>
+  </g>
+
+  <!-- Seated interviewee, left -->
+  <g fill="#060505">
+    <ellipse cx="330" cy="640" rx="84" ry="98"/>
+    <path d="M330 750c110 0 200 72 216 176l16 118H98l16-118c16-104 106-176 216-176z"/>
+  </g>
+
+  <rect x="0" y="1044" width="1600" height="156" fill="#0B0908"/>
+  <rect x="0" y="1040" width="1600" height="4" fill="#7A2135" opacity="0.8"/>
+  <g fill="#F6F1E6" opacity="0.13">
+    <rect x="120" y="1092" width="330" height="18"/>
+    <rect x="120" y="1128" width="200" height="12"/>
+  </g>
+  <rect width="1600" height="1200" fill="#000" opacity="0.13"/>
+</svg>

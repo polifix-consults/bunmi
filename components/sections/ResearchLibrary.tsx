@@ -298,18 +298,17 @@ function IndexRow({ work, no }: { work: ResearchWork; no: number }) {
               <Download className="h-3.5 w-3.5" aria-hidden="true" />
               <span>Download Literature (PDF)</span>
             </a>
-            <span className="font-inter text-xs text-slate-400">
-              Direct from Supabase book bucket
-            </span>
           </div>
         )}
 
-        {/* Tags */}
-        <div className="mt-3 flex flex-wrap gap-x-2 gap-y-1 font-inter text-[11px] text-slate-400">
-          {work.tags.map((tag) => (
-            <span key={tag} className="text-slate-500">#{tag}</span>
-          ))}
-        </div>
+        {/* Tags (hidden for roundtable card per request) */}
+        {!isRoundtable && work.tags.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-x-2 gap-y-1 font-inter text-[11px] text-slate-400">
+            {work.tags.map((tag) => (
+              <span key={tag} className="text-slate-500">{tag}</span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Kind · venue · status */}

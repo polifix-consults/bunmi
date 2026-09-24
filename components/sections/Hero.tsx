@@ -92,10 +92,25 @@ export function Hero() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center"
               >
-                {/* LEFT COLUMN: Book Info & Action Buttons */}
-                <div className="lg:col-span-6 space-y-6 max-w-xl">
+                {/* Book Cover Showcase (First on mobile, right on desktop) */}
+                <div className="order-1 lg:order-2 lg:col-span-6 flex justify-center lg:justify-end">
+                  <div className="relative w-full max-w-[240px] sm:max-w-[320px] md:max-w-[410px] lg:max-w-[450px] xl:max-w-[480px] aspect-[1/1.38] overflow-hidden rounded-md border border-slate-200/80 bg-slate-900 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
+                    <Image
+                      src="/images/book_cover.png"
+                      alt="Book cover"
+                      fill
+                      priority
+                      quality={95}
+                      sizes="(min-width: 1024px) 50vw, 85vw"
+                      className="object-cover object-center"
+                    />
+                  </div>
+                </div>
+
+                {/* Book Info & Action Buttons (Second on mobile, left on desktop) */}
+                <div className="order-2 lg:order-1 lg:col-span-6 space-y-6 max-w-xl">
                   <div className="space-y-3">
                     <p className="font-inter text-base sm:text-lg leading-relaxed text-slate-700 font-light">
                       Olubunmi Ayantunji takes readers on a compelling journey into one of Africa&apos;s most enduring governance challenges: why do some imported policy solutions work, while others, despite the best intentions, fail to create meaningful change?
@@ -130,21 +145,6 @@ export function Hero() {
                     </div>
                   </div>
                 </div>
-
-                {/* RIGHT COLUMN: Book Cover Showcase */}
-                <div className="lg:col-span-6 flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-[320px] sm:max-w-[370px] md:max-w-[410px] lg:max-w-[450px] xl:max-w-[480px] aspect-[1/1.38] overflow-hidden rounded-md border border-slate-200/80 bg-slate-900 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
-                    <Image
-                      src="/images/book_cover.png"
-                      alt="Book cover"
-                      fill
-                      priority
-                      quality={95}
-                      sizes="(min-width: 1024px) 50vw, 85vw"
-                      className="object-cover object-center"
-                    />
-                  </div>
-                </div>
               </motion.div>
             ) : (
               /* ==================== SLIDE 2: ABOUT HIM ==================== */
@@ -155,10 +155,24 @@ export function Hero() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center"
               >
-                {/* LEFT COLUMN: About Intro & Action Buttons */}
-                <div className="lg:col-span-6 space-y-6 max-w-xl">
+                {/* Portrait Image (First on mobile, right on desktop) */}
+                <div className="order-1 lg:order-2 lg:col-span-6 flex justify-center lg:justify-end">
+                  <div className="relative w-full max-w-[240px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[490px] xl:max-w-[520px] aspect-[4/5] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
+                    <Image
+                      src="/images/pictures/mainpic1.jpeg"
+                      alt="Olubunmi (Bunmi) Ayantunji"
+                      fill
+                      priority
+                      sizes="(min-width: 1024px) 50vw, (min-width: 640px) 75vw, 100vw"
+                      className="object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
+                    />
+                  </div>
+                </div>
+
+                {/* About Intro & Action Buttons (Second on mobile, left on desktop) */}
+                <div className="order-2 lg:order-1 lg:col-span-6 space-y-6 max-w-xl">
                   <div className="space-y-3">
                     <p className="font-inter text-base sm:text-lg leading-relaxed text-slate-700 font-light">
                       Olubunmi (Bunmi) Ayantunji is a legal practitioner by training and a public policy practitioner whose work focuses on strategic governance, legislation, and institutional development. With nearly a decade of experience in legislative governance and public policy, he brings a practical perspective to designing effective institutions and locally grounded policy solutions and innovation.
@@ -190,20 +204,6 @@ export function Hero() {
                         className="h-10 sm:h-12 md:h-14 w-auto object-contain select-none"
                       />
                     </div>
-                  </div>
-                </div>
-
-                {/* RIGHT COLUMN: Portrait Image */}
-                <div className="lg:col-span-6 flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-[340px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[490px] xl:max-w-[520px] aspect-[4/5] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
-                    <Image
-                      src="/images/pictures/mainpic1.jpeg"
-                      alt="Olubunmi (Bunmi) Ayantunji"
-                      fill
-                      priority
-                      sizes="(min-width: 1024px) 50vw, (min-width: 640px) 75vw, 100vw"
-                      className="object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
-                    />
                   </div>
                 </div>
               </motion.div>

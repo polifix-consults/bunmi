@@ -11,11 +11,14 @@ envFile.split(/\r?\n/).forEach(line => {
   }
 });
 
-const url = env.NEXT_PUBLIC_SUPABASE_URL;
-const secretKey = env.NEXT_SUPABASE_SECRET_KEY || env.SUPABASE_SERVICE_ROLE_KEY;
+const url = env.SUPABASE_URL || env.NEXT_PUBLIC_SUPABASE_URL;
+const secretKey =
+  env.SUPABASE_SECRET_KEY ||
+  env.NEXT_SUPABASE_SECRET_KEY ||
+  env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!url || !secretKey) {
-  console.error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_SUPABASE_SECRET_KEY in .env");
+  console.error("Missing SUPABASE_URL or SUPABASE_SECRET_KEY in .env");
   process.exit(1);
 }
 

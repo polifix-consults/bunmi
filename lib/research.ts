@@ -280,12 +280,12 @@ export const RESEARCH_WORKS: ResearchWork[] = [
 /**
  * Helper to fetch research works.
  * Currently returns the static RESEARCH_WORKS dataset.
- * When Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY)
+ * When Supabase environment variables (SUPABASE_URL and SUPABASE_ANON_KEY)
  * are provided, it can query Supabase directly with fallback to the local list.
  */
 export async function getResearchWorks(): Promise<ResearchWork[]> {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (supabaseUrl && supabaseKey) {
     try {

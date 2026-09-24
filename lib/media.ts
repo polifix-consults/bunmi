@@ -271,11 +271,11 @@ export const MEDIA_ITEMS: MediaItem[] = [
 /**
  * Helper to fetch media items.
  * Returns static MEDIA_ITEMS by default, and queries Supabase table `media_publications`
- * when NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are present.
+ * when SUPABASE_URL and SUPABASE_ANON_KEY are present.
  */
 export async function getMediaItems(): Promise<MediaItem[]> {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (supabaseUrl && supabaseKey) {
     try {

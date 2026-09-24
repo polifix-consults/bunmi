@@ -23,16 +23,47 @@ export async function submitContactForm(data: ContactFormData): Promise<ContactR
     return { success: true, message: "Message sent successfully." };
   }
 
-  // Asynchronously archive copy into Supabase
+  // Client-side execution via secure server API route
+  if (typeof window !== "undefined") {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const resData = await res.json().catch(() => ({}));
+      if (res.ok && resData.success) {
+        return { success: true, message: resData.message || "Message received successfully." };
+      }
+      return {
+        success: false,
+        message: resData.message || "Failed to send message. Please try again.",
+      };
+    } catch {
+      return {
+        success: false,
+        message: "Network error occurred while submitting. Please try again or email directly.",
+      };
+    }
+  }
+
+  // Asynchronously archive copy into Supabase (server-side)
   saveContactMessageToSupabase({
     name: data.name,
     email: data.email,
     message: data.message,
   }).catch(() => {});
 
-  const emailRecipient = SITE.email || "olubunmiayantunji@gmail.com";
-  const web3formsKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
-  const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim();
+  const emailRecipient =
+    process.env.CONTACT_INBOX_EMAIL?.trim() ||
+    SITE.email ||
+    "olubunmiayantunji@gmail.com";
+  const web3formsKey =
+    process.env.WEB3FORMS_ACCESS_KEY?.trim() ||
+    process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
+  const formspreeId =
+    process.env.FORMSPREE_ID?.trim() ||
+    process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim();
 
   // 1. Web3Forms (if access key is provided in .env)
   if (web3formsKey) {

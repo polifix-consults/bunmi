@@ -10,8 +10,8 @@ envFile.split(/\r?\n/).forEach(line => {
   }
 });
 
-const url = env.NEXT_PUBLIC_SUPABASE_URL;
-const key = env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const url = env.SUPABASE_URL || env.NEXT_PUBLIC_SUPABASE_URL;
+const key = env.SUPABASE_ANON_KEY || env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 async function verify() {
   console.log('Verifying Supabase live database tables...');

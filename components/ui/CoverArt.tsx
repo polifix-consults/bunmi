@@ -4,20 +4,20 @@ import { BOOK } from "@/lib/content";
 import { SITE } from "@/lib/site";
 
 /**
- * Renders the official book cover image (/images/media/bookcover.png).
+ * Renders the official book cover image (/images/media/bookcover.jpeg).
  */
 export function CoverArt({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative aspect-[3/4] w-full overflow-hidden rounded-[6px] bg-slate-900 shadow-2xl shadow-slate-900/40 ring-1 ring-slate-900/10 transition-transform duration-500 hover:scale-[1.02]",
+        "relative aspect-[1/1.18] w-full overflow-hidden rounded-[6px] bg-slate-900 shadow-2xl shadow-slate-900/40 ring-1 ring-slate-900/10 transition-transform duration-500 hover:scale-[1.02]",
         className,
       )}
       role="img"
       aria-label={`Cover art for the book, ${BOOK.workingTitle}, by ${SITE.name}`}
     >
       <Image
-        src="/images/book_cover.png"
+        src="/images/media/bookcover.jpeg"
         alt={`Cover art for the book, ${BOOK.workingTitle}, by ${SITE.name}`}
         fill
         priority

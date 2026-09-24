@@ -176,9 +176,9 @@ function FeaturedWork({
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         {/* Book Cover Image */}
         <div className="lg:col-span-4">
-          <div className="relative mx-auto aspect-[3/4] w-full max-w-[15rem] overflow-hidden rounded-md border border-slate-200 bg-[#0A2540] shadow-xl ring-1 ring-slate-900/10 lg:mx-0">
+          <div className="relative mx-auto aspect-[1/1.18] w-full max-w-[17.5rem] overflow-hidden rounded-md border border-slate-200 bg-[#0A2540] shadow-xl ring-1 ring-slate-900/10 lg:mx-0">
             <Image
-              src="/images/book_cover.png"
+              src="/images/media/bookcover.jpeg"
               alt={`Book Cover — ${work.title}`}
               fill
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 40vw, 80vw"

@@ -47,7 +47,7 @@ export const RESEARCH_WORKS: ResearchWork[] = [
       "Olubunmi Ayantunji takes readers on a compelling journey into one of Africa's most enduring governance challenges: why do some imported policy solutions spark progress, while others, despite the best intentions, fail to create meaningful change? Drawing on compelling case studies, historical examples, and practical policy insights, Ayantunji examines how governance models, institutions, and development strategies cross borders and shape outcomes across Africa. Essential reading for policymakers, public servants, academics, students, and development practitioners.",
     tags: ["Policy Transfer", "African Governance", "Public Administration", "Governance Reform"],
     status: "Available Now",
-    coverImage: "/images/book_cover.png",
+    coverImage: "/images/media/bookcover.jpeg",
     featured: true,
   },
   {
@@ -316,7 +316,7 @@ export async function getResearchWorks(): Promise<ResearchWork[]> {
             const coverImage = item.cover_image
               ? String(item.cover_image)
               : isCopyAndPaste
-              ? "/images/book_cover.png"
+              ? "/images/media/bookcover.jpeg"
               : isRoundtable
               ? "/images/media/pRoundT.webp"
               : undefined;

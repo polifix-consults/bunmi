@@ -139,9 +139,9 @@ export function WaitlistModal({
                 {/* Header with Miniature Book Feature */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6 border-b border-slate-200 pb-6">
                   {/* Book Mockup Thumbnail */}
-                  <div className="relative aspect-[3/4] w-20 sm:w-24 shrink-0 overflow-hidden rounded border border-slate-200 bg-[#0A2540] shadow-md ring-1 ring-slate-900/10">
+                  <div className="relative aspect-[1/1.18] w-24 sm:w-28 shrink-0 overflow-hidden rounded border border-slate-200 bg-[#0A2540] shadow-md ring-1 ring-slate-900/10">
                     <Image
-                      src="/images/book_cover.png"
+                      src="/images/media/bookcover.jpeg"
                       alt={BOOK.workingTitle}
                       fill
                       sizes="96px"

@@ -97,9 +97,9 @@ export function Hero() {
               >
                 {/* Book Cover Showcase (First on mobile, right on desktop) */}
                 <div className="order-1 lg:order-2 lg:col-span-6 flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-[240px] sm:max-w-[320px] md:max-w-[410px] lg:max-w-[450px] xl:max-w-[480px] aspect-[1/1.38] overflow-hidden rounded-md border border-slate-200/80 bg-slate-900 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
+                  <div className="relative w-full max-w-[280px] sm:max-w-[360px] md:max-w-[460px] lg:max-w-[500px] xl:max-w-[540px] aspect-[1/1.18] overflow-hidden rounded-md border border-slate-200/80 bg-slate-900 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
                     <Image
-                      src="/images/book_cover.png"
+                      src="/images/media/bookcover.jpeg"
                       alt="Book cover"
                       fill
                       priority

@@ -67,7 +67,7 @@ export function Hero() {
       aria-label="Hero Section"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative min-h-screen lg:h-screen lg:max-h-screen w-full bg-white text-slate-900 overflow-hidden font-inter border-b border-slate-200 flex flex-col justify-between pt-[var(--nav-h)]"
+      className="relative min-h-[calc(100vh-var(--nav-h))] lg:min-h-screen w-full bg-white text-slate-900 overflow-x-hidden font-inter border-b border-slate-200 flex flex-col justify-between pt-[var(--nav-h)]"
     >
       {/* Background Vertical Alignment Lines (Grid Architecture) */}
       <div className="absolute inset-0 pointer-events-none grid grid-cols-1 md:grid-cols-5 divide-x divide-slate-200/60 z-0">
@@ -81,8 +81,9 @@ export function Hero() {
       {/* Main Structural Container */}
       <div className="relative z-10 h-full flex flex-col justify-between w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
         {/* ==================== HERO CAROUSEL CONTAINER ==================== */}
-        <div className="relative my-auto py-3 lg:py-6 overflow-hidden">
-          <AnimatePresence initial={false} custom={direction} mode="wait">
+        <div className="relative my-auto py-3 lg:py-6 w-full">
+          <div className="relative overflow-hidden w-full">
+            <AnimatePresence initial={false} custom={direction} mode="wait">
             {currentSlide === 0 ? (
               /* ==================== SLIDE 1: THE BOOK ==================== */
               <motion.div
@@ -209,18 +210,19 @@ export function Hero() {
               </motion.div>
             )}
           </AnimatePresence>
+          </div>
 
           {/* ==================== CAROUSEL CONTROLS & PAGINATION ==================== */}
-          <div className="mt-6 pt-3 flex items-center justify-between border-t border-slate-100">
+          <div className="mt-4 sm:mt-6 pt-3 flex items-center justify-between border-t border-slate-100 shrink-0 z-20">
             {/* Slide Indicator Tabs */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               {SLIDES.map((slide, idx) => (
                 <button
                   key={slide.id}
                   type="button"
                   onClick={() => setSlide(idx)}
                   className={cn(
-                    "flex items-center gap-2 px-3 py-1.5 rounded text-[11px] font-inter uppercase tracking-wider transition-all duration-200",
+                    "flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded text-[11px] font-inter uppercase tracking-wider transition-all duration-200 cursor-pointer",
                     currentSlide === idx
                       ? "bg-slate-900 text-white font-semibold shadow-xs"
                       : "bg-slate-100/80 text-slate-500 hover:bg-slate-200/80 hover:text-slate-900 font-medium"
@@ -234,22 +236,22 @@ export function Hero() {
             </div>
 
             {/* Previous / Next Arrow Controls */}
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 shrink-0">
               <button
                 type="button"
                 onClick={() => paginate(-1)}
                 aria-label="Previous Slide"
-                className="flex h-8 w-8 items-center justify-center rounded border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-colors duration-200"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-colors duration-200 cursor-pointer"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-4 w-4 shrink-0" />
               </button>
               <button
                 type="button"
                 onClick={() => paginate(1)}
                 aria-label="Next Slide"
-                className="flex h-8 w-8 items-center justify-center rounded border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-colors duration-200"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-colors duration-200 cursor-pointer"
               >
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-4 w-4 shrink-0" />
               </button>
             </div>
           </div>

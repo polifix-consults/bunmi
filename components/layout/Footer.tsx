@@ -66,19 +66,15 @@ export function Footer() {
               </a>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-3">
               <button
                 type="button"
-                className="group inline-flex items-center gap-2 py-1 font-inter text-xs font-medium tracking-normal text-slate-800 transition-colors duration-200 hover:text-[#0A2540] cursor-pointer text-left"
                 onClick={openNewsletterModal}
+                className="group inline-flex items-center gap-3 rounded-md bg-[#0A2540] px-5 py-3 font-inter text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#061628] hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer text-left"
               >
-                <span className="relative pb-0.5">
-                  Subscribe to the Sidewalk Parliament Newsletter by Bunmi Ayantunji
-                  <span className="absolute bottom-0 left-0 h-[1.5px] w-full bg-slate-900 transition-all duration-300 group-hover:bg-[#0A2540] group-hover:h-[2px]" />
-                </span>
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-900 transition-all duration-300 group-hover:bg-[#0A2540] group-hover:text-white group-hover:translate-x-1 shadow-2xs">
-                  <ArrowRight className="h-2.5 w-2.5" aria-hidden="true" />
-                </span>
+                <Mail className="h-4 w-4 text-slate-200 shrink-0 transition-transform duration-200 group-hover:scale-105" aria-hidden="true" />
+                <span>Subscribe to Sidewalk Parliament Newsletter</span>
+                <ArrowRight className="h-3.5 w-3.5 text-slate-300 shrink-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
               </button>
             </div>
           </div>

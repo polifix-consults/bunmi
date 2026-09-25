@@ -35,12 +35,12 @@ export const metadata: Metadata = {
   creator: SITE.name,
   publisher: SITE.name,
   applicationName: SITE.name,
+  verification: {
+    google: "q8m8pIr0pUsxV3PGAwDQihXy0R5BMD20JLt8vdhQZyc",
+  },
   alternates: { canonical: "/" },
   icons: {
-    icon: [
-      { url: "/icon.png" },
-      { url: "/images/media/pfp.png" },
-    ],
+    icon: [{ url: "/icon.png" }, { url: "/images/media/pfp.png" }],
     shortcut: "/favicon.ico",
     apple: "/apple-icon.png",
   },

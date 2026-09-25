@@ -228,7 +228,7 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
                           <span>Subscribing…</span>
                         </>
                       ) : (
-                        <span>Subscribe to Newsletter &rarr;</span>
+                        <span>Subscribe to the Newsletter &rarr;</span>
                       )}
                     </button>
                   </div>

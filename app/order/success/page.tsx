@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { CheckCircle2, Clock, BookOpen, MapPin, Mail, ArrowRight } from "lucide-react";
+import { CheckCircle2, Clock, BookOpen, MapPin, Mail } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 import {
   getOrderBySessionId,
   getOrderById,
@@ -83,35 +83,35 @@ export default async function OrderSuccessPage({ searchParams }: SuccessPageProp
   const isConfirmed = order?.order_status === "paid";
 
   return (
-    <main className="min-h-screen bg-[#081A2F] text-white font-inter py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto">
+    <main className="min-h-screen bg-paper text-ink font-sans px-6 pb-16 pt-[calc(var(--nav-h)+3rem)] sm:px-8 sm:pb-24 sm:pt-[calc(var(--nav-h)+5rem)]">
+      <div className="mx-auto max-w-3xl">
         {/* Status Card */}
-        <div className="bg-[#0D233A] border border-slate-700/80 rounded-xl p-6 sm:p-10 shadow-2xl">
+        <div className="border border-line bg-paper-bright p-6 shadow-sm sm:p-10 lg:p-12">
           <div className="flex items-center gap-4 mb-6">
             {isConfirmed ? (
-              <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-6 h-6 text-emerald-400" />
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-tint text-accent">
+                <CheckCircle2 className="w-6 h-6" />
               </div>
             ) : (
-              <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center shrink-0">
-                <Clock className="w-6 h-6 text-amber-400" />
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-paper-deep text-ink-soft">
+                <Clock className="w-6 h-6" />
               </div>
             )}
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-400">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-accent">
                 {isConfirmed ? "Order Confirmed & Ticket Reserved" : "Payment Received"}
               </span>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-0.5">
+              <h1 className="mt-0.5 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
                 {isConfirmed ? "You're All Set!" : "Finalizing Your Confirmation..."}
               </h1>
             </div>
           </div>
 
-          <p className="text-slate-300 text-base leading-relaxed mb-8 font-light">
+          <p className="mb-8 text-base font-light leading-relaxed text-ink-soft">
             {isConfirmed ? (
               <>
                 Thank you for your order,{" "}
-                <span className="font-semibold text-white">
+                <span className="font-semibold text-ink">
                   {order?.buyer_name || "Guest"}
                 </span>
                 . Your{" "}
@@ -119,7 +119,7 @@ export default async function OrderSuccessPage({ searchParams }: SuccessPageProp
                   ? getBookEditionLabel(order.book_edition).toLowerCase()
                   : "book"}{" "}
                 edition purchase doubles as your official registration for the{" "}
-                <span className="font-semibold text-white">{config.title}</span> and
+                <span className="font-semibold text-ink">{config.title}</span> and
                 reserves your personally autographed copy.
               </>
             ) : (
@@ -132,39 +132,39 @@ export default async function OrderSuccessPage({ searchParams }: SuccessPageProp
 
           {/* Order Details Breakdown */}
           {order && (
-            <div className="bg-[#061628] border border-slate-800 rounded-lg p-5 sm:p-6 mb-8 space-y-3.5">
-              <div className="flex justify-between items-center text-sm border-b border-slate-800 pb-3">
-                <span className="text-slate-400">Order Reference</span>
-                <span className="font-mono font-bold text-amber-400 text-base">
+            <div className="mb-8 space-y-3.5 border border-line bg-paper-deep p-5 sm:p-6">
+              <div className="flex items-center justify-between border-b border-line pb-3 text-sm">
+                <span className="text-ink-faint">Order Reference</span>
+                <span className="font-mono text-base font-bold text-accent">
                   {order.order_reference}
                 </span>
               </div>
               <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-400">Publication</span>
-                <span className="font-medium text-white text-right">
+                <span className="text-ink-faint">Publication</span>
+                <span className="text-right font-medium text-ink">
                   {config.bookTitle}
                 </span>
               </div>
               <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-400">Edition</span>
-                <span className="font-medium text-white">
+                <span className="text-ink-faint">Edition</span>
+                <span className="font-medium text-ink">
                   {getBookEditionLabel(order.book_edition)}
                 </span>
               </div>
               <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-400">Quantity</span>
-                <span className="font-medium text-white">
+                <span className="text-ink-faint">Quantity</span>
+                <span className="text-right font-medium text-ink">
                   {order.quantity} Autographed {getBookEditionLabel(order.book_edition)}{" "}
                   {order.quantity === 1 ? "Copy" : "Copies"}
                 </span>
               </div>
               <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-400">Launch Admission</span>
-                <span className="font-semibold text-emerald-400">Confirmed (Included)</span>
+                <span className="text-ink-faint">Launch Admission</span>
+                <span className="font-semibold text-accent">Confirmed (Included)</span>
               </div>
-              <div className="flex justify-between items-center text-sm pt-2 border-t border-slate-800 font-bold">
-                <span className="text-white">Total Paid</span>
-                <span className="text-white text-base">
+              <div className="flex justify-between items-center border-t border-line pt-3 text-sm font-bold">
+                <span className="text-ink">Total Paid</span>
+                <span className="text-base text-accent">
                   {formatCurrency(
                     order.paid_amount || order.expected_amount,
                     order.currency
@@ -175,34 +175,34 @@ export default async function OrderSuccessPage({ searchParams }: SuccessPageProp
           )}
 
           {/* Event & In-Person Pickup Notice */}
-          <div className="border-l-4 border-amber-500 bg-[#061628]/60 p-5 rounded-r-lg mb-8 space-y-2.5">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+          <div className="mb-8 space-y-2.5 border-l-4 border-accent bg-accent-tint p-5">
+            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent">
               <BookOpen className="w-4 h-4" />
               Event Admission &amp; Book Pickup
             </h2>
-            <p className="text-sm text-slate-300 font-light leading-relaxed">
+            <p className="text-sm font-light leading-relaxed text-ink-soft">
               <strong>There is no postal delivery.</strong> You will collect your
               autographed {order ? getBookEditionLabel(order.book_edition).toLowerCase() : "book"} edition
               at the registration desk upon arriving at the event.
             </p>
-            <div className="text-xs text-slate-400 space-y-1 pt-1">
+            <div className="space-y-1 pt-1 text-xs text-ink-soft">
               <p className="flex items-center gap-2">
-                <Clock className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                <Clock className="h-3.5 w-3.5 shrink-0 text-ink-faint" />
                 <span><strong>Date:</strong> {config.dateText}</span>
               </p>
               <p className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                <MapPin className="h-3.5 w-3.5 shrink-0 text-ink-faint" />
                 <span><strong>Venue:</strong> {config.venueText}</span>
               </p>
               <p className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                <Mail className="h-3.5 w-3.5 shrink-0 text-ink-faint" />
                 <span><strong>Proof of Entry:</strong> Your Order Reference or email confirmation</span>
               </p>
             </div>
           </div>
 
           {/* Privacy Note */}
-          <p className="text-xs text-slate-400 font-light leading-relaxed border-t border-slate-800/80 pt-6 mb-8">
+          <p className="mb-8 border-t border-line pt-6 text-xs font-light leading-relaxed text-ink-faint">
             <strong>Privacy Notice:</strong> Your personal information (name and email) is
             collected strictly for order processing, receipt delivery, and event access control
             in accordance with applicable privacy standards. Your payment card details were
@@ -211,13 +211,9 @@ export default async function OrderSuccessPage({ searchParams }: SuccessPageProp
 
           {/* Back Home CTA */}
           <div className="flex justify-end">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2.5 rounded bg-white px-6 py-3 font-inter text-xs font-bold uppercase tracking-[0.15em] text-black shadow-sm transition-all duration-200 hover:bg-slate-200 cursor-pointer"
-            >
+            <Button href="/" variant="primary" size="md" withArrow>
               Return to Home
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

@@ -5,8 +5,8 @@ export const BOOK_EDITIONS = ["paperback", "hardcover"] as const;
 export type BookEdition = (typeof BOOK_EDITIONS)[number];
 
 export const BOOK_EDITION_PRICES_IN_CENTS: Record<BookEdition, number> = {
-  paperback: 50,
-  hardcover: 70,
+  paperback: 4000,
+  hardcover: 4500,
 };
 
 export const BOOK_EDITION_LABELS: Record<BookEdition, string> = {

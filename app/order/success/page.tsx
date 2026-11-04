@@ -83,17 +83,17 @@ export default async function OrderSuccessPage({ searchParams }: SuccessPageProp
   const isConfirmed = order?.order_status === "paid";
 
   return (
-    <main className="min-h-screen bg-paper text-ink font-sans px-6 pb-16 pt-[calc(var(--nav-h)+3rem)] sm:px-8 sm:pb-24 sm:pt-[calc(var(--nav-h)+5rem)]">
+    <main className="min-h-screen bg-white text-ink font-sans px-6 pb-16 pt-[calc(var(--nav-h)+3rem)] sm:px-8 sm:pb-24 sm:pt-[calc(var(--nav-h)+5rem)]">
       <div className="mx-auto max-w-3xl">
         {/* Status Card */}
-        <div className="border border-line bg-paper-bright p-6 shadow-sm sm:p-10 lg:p-12">
+        <div className="border border-line bg-white p-6 shadow-sm sm:p-10 lg:p-12">
           <div className="flex items-center gap-4 mb-6">
             {isConfirmed ? (
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-tint text-accent">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
             ) : (
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-paper-deep text-ink-soft">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy">
                 <Clock className="w-6 h-6" />
               </div>
             )}
@@ -132,7 +132,7 @@ export default async function OrderSuccessPage({ searchParams }: SuccessPageProp
 
           {/* Order Details Breakdown */}
           {order && (
-            <div className="mb-8 space-y-3.5 border border-line bg-paper-deep p-5 sm:p-6">
+            <div className="mb-8 space-y-3.5 border border-navy-100 bg-navy-50 p-5 sm:p-6">
               <div className="flex items-center justify-between border-b border-line pb-3 text-sm">
                 <span className="text-ink-faint">Order Reference</span>
                 <span className="font-mono text-base font-bold text-accent">

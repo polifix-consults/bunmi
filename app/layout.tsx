@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { WaitlistModalProvider } from "@/components/context/WaitlistModalContext";
 import { NewsletterModalProvider } from "@/components/context/NewsletterModalContext";
+import { OrderModalProvider } from "@/components/context/OrderModalContext";
 import { SITE } from "@/lib/site";
 
 import "./globals.css";
@@ -87,9 +88,11 @@ export default function RootLayout({
 
         <NewsletterModalProvider>
           <WaitlistModalProvider>
-            <Navbar />
-            {children}
-            <Footer />
+            <OrderModalProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </OrderModalProvider>
           </WaitlistModalProvider>
         </NewsletterModalProvider>
       </body>

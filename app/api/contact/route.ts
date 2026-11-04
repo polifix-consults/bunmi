@@ -3,26 +3,55 @@ import { SITE } from "@/lib/site";
 
 export async function POST(req: Request) {
   try {
-    const data = await req.json();
+    let data: Record<string, unknown> = {};
+    try {
+      data = await req.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, message: "Invalid JSON payload." },
+        { status: 400 }
+      );
+    }
 
     // Silent drop for spambots triggering the honeypot
-    if (data.botcheck && data.botcheck.trim().length > 0) {
+    const botcheck = typeof data.botcheck === "string" ? data.botcheck.trim() : "";
+    if (botcheck.length > 0) {
       return NextResponse.json({
         success: true,
         message: "Message sent successfully.",
       });
     }
 
-    const supabaseUrl =
-      process.env.SUPABASE_URL ||
-      process.env.NEXT_PUBLIC_SUPABASE_URL ||
-      "https://fbzmzvhuutzwcnspotzj.supabase.co";
+    const name = typeof data.name === "string" ? data.name.trim() : "";
+    const email = typeof data.email === "string" ? data.email.trim() : "";
+    const message = typeof data.message === "string" ? data.message.trim() : "";
+
+    if (!name || name.length > 120) {
+      return NextResponse.json(
+        { success: false, message: "Please provide a valid name (up to 120 characters)." },
+        { status: 400 }
+      );
+    }
+
+    if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json(
+        { success: false, message: "Please provide a valid email address." },
+        { status: 400 }
+      );
+    }
+
+    if (!message || message.length > 5000) {
+      return NextResponse.json(
+        { success: false, message: "Message is required and must not exceed 5000 characters." },
+        { status: 400 }
+      );
+    }
+
+    const supabaseUrl = process.env.SUPABASE_URL || "https://fbzmzvhuutzwcnspotzj.supabase.co";
     const supabaseKey =
-      process.env.SUPABASE_SECRET_KEY ||
-      process.env.NEXT_SUPABASE_SECRET_KEY ||
       process.env.SUPABASE_SERVICE_ROLE_KEY ||
+      process.env.SUPABASE_SECRET_KEY ||
       process.env.SUPABASE_ANON_KEY ||
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
       "";
 
     // Asynchronously archive copy into Supabase if configured
@@ -36,9 +65,9 @@ export async function POST(req: Request) {
           Prefer: "return=minimal",
         },
         body: JSON.stringify({
-          name: (data.name || "").trim(),
-          email: (data.email || "").trim(),
-          message: (data.message || "").trim(),
+          name,
+          email,
+          message,
         }),
       }).catch((err) => {
         console.warn("Contact form Supabase archive warning:", err);
@@ -49,12 +78,8 @@ export async function POST(req: Request) {
       process.env.CONTACT_INBOX_EMAIL?.trim() ||
       SITE.email ||
       "olubunmiayantunji@gmail.com";
-    const web3formsKey =
-      process.env.WEB3FORMS_ACCESS_KEY?.trim() ||
-      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
-    const formspreeId =
-      process.env.FORMSPREE_ID?.trim() ||
-      process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim();
+    const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY?.trim();
+    const formspreeId = process.env.FORMSPREE_ID?.trim();
 
     // 1. Web3Forms
     if (web3formsKey) {

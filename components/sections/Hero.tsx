@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useWaitlistModal } from "@/components/context/WaitlistModalContext";
+import { useOrderModal } from "@/components/context/OrderModalContext";
 import { cn } from "@/lib/cn";
 
 const SLIDES = [
@@ -17,7 +17,7 @@ export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
-  const { openWaitlistModal } = useWaitlistModal();
+  const { openOrderModal } = useOrderModal();
 
   // Autoplay carousel every 7 seconds unless hovered
   useEffect(() => {
@@ -124,7 +124,7 @@ export function Hero() {
                   <div className="pt-2 flex items-center justify-between gap-4 w-full">
                     <button
                       type="button"
-                      onClick={openWaitlistModal}
+                      onClick={openOrderModal}
                       className="group inline-flex items-center gap-3 py-1 font-inter text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-slate-900 transition-colors duration-200 hover:text-[#0A2540] cursor-pointer shrink-0"
                     >
                       <span className="relative pb-1">

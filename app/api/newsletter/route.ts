@@ -2,32 +2,36 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { email, fullName, firstName, lastName } = await req.json();
-    const trimmedEmail = (email || "").trim();
+    let body: Record<string, unknown> = {};
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, message: "Invalid JSON request." },
+        { status: 400 }
+      );
+    }
 
-    if (!trimmedEmail) {
+    const { email, fullName, firstName, lastName } = body;
+    const trimmedEmail = typeof email === "string" ? email.trim() : "";
+
+    if (!trimmedEmail || trimmedEmail.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       return NextResponse.json(
         { success: false, message: "Please enter a valid email address." },
         { status: 400 }
       );
     }
 
-    let fName = (firstName || "").trim();
-    let lName = (lastName || "").trim();
-    if (fullName && !fName && !lName) {
-      const parts = fullName.trim().split(" ");
+    let fName = typeof firstName === "string" ? firstName.trim().slice(0, 80) : "";
+    let lName = typeof lastName === "string" ? lastName.trim().slice(0, 80) : "";
+    if (typeof fullName === "string" && !fName && !lName) {
+      const parts = fullName.trim().slice(0, 120).split(" ");
       fName = parts[0] || "";
       lName = parts.slice(1).join(" ") || "";
     }
 
-    const audienceId =
-      process.env.MAILCHIMP_AUDIENCE_ID ||
-      process.env.NEXT_PUBLIC_MAILCHIMP_AUDIENCE_ID ||
-      "f1970002ce";
-    const apiKey =
-      process.env.MAILCHIMP_API_KEY ||
-      process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY ||
-      "";
+    const audienceId = process.env.MAILCHIMP_AUDIENCE_ID?.trim() || "f1970002ce";
+    const apiKey = process.env.MAILCHIMP_API_KEY?.trim() || "";
 
     if (!apiKey) {
       // Graceful local acceptance if no API key is configured

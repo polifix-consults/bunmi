@@ -1,12 +1,18 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { CoverArt } from "@/components/ui/CoverArt";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { WaitlistForm } from "@/components/forms/WaitlistForm";
+import { useOrderModal } from "@/components/context/OrderModalContext";
 import { BOOK } from "@/lib/content";
+import { BookOpen, ArrowRight } from "lucide-react";
 
 /** Book page core: cover wireframe, synopsis and the waitlist capture module. */
 export function BookShowcase() {
+  const { openOrderModal } = useOrderModal();
+
   return (
     <Section tone="paper" aria-labelledby="synopsis-heading">
       <Container>
@@ -62,10 +68,31 @@ export function BookShowcase() {
             </Reveal>
           </div>
 
-          {/* Waitlist */}
+          {/* Order & Waitlist */}
           <div className="lg:col-span-4">
             <Reveal delay={0.16} direction="right">
-              <div className="lg:sticky lg:top-32">
+              <div className="lg:sticky lg:top-32 space-y-6">
+                <div className="border border-line bg-paper-bright p-6 sm:p-8">
+                  <span className="font-sans text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-accent">
+                    Book Launch &amp; Attendance
+                  </span>
+                  <h3 className="mt-2 text-xl font-bold text-ink">
+                    Order Inscribed Copy
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-soft leading-relaxed font-light">
+                    Every order reserves a personally inscribed hardcover edition and includes official admission to the Book Launch and Policy Dialogue.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={openOrderModal}
+                    className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded bg-ink px-5 py-3.5 font-sans text-xs font-bold uppercase tracking-widest text-paper-bright hover:bg-ink-soft transition-colors cursor-pointer shadow-sm"
+                  >
+                    <BookOpen className="w-4 h-4" />
+                    Order Book &amp; Attend
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+
                 <WaitlistForm />
               </div>
             </Reveal>

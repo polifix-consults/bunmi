@@ -2,12 +2,12 @@
 
 import { ArrowRight, BookOpen } from "lucide-react";
 
-import { useWaitlistModal } from "@/components/context/WaitlistModalContext";
+import { useOrderModal } from "@/components/context/OrderModalContext";
 import { BOOK } from "@/lib/content";
 
 /** Minimalist editorial book teaser section */
 export function BookTeaser() {
-  const { openWaitlistModal } = useWaitlistModal();
+  const { openOrderModal } = useOrderModal();
 
   return (
     <section
@@ -49,20 +49,20 @@ export function BookTeaser() {
           <div className="border-t border-slate-800/80 pt-8 mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div className="space-y-1.5 text-left">
               <h3 className="font-inter text-base sm:text-lg font-bold uppercase tracking-[0.08em] text-white">
-                Available Now
+                Book Launch &amp; Attendance
               </h3>
               <p className="font-inter text-sm text-stone-400 font-light leading-relaxed">
-                Order your copy today to explore critical policy insights, case studies, and actionable governance frameworks.
+                Order your autographed copy today. Each purchase includes admission to the Book Launch and Policy Dialogue with pickup at the event.
               </p>
             </div>
             <div className="shrink-0">
               <button
                 type="button"
-                onClick={openWaitlistModal}
-                className="inline-flex items-center gap-3 justify-center rounded bg-white px-7 py-3.5 font-inter text-xs font-bold uppercase tracking-[0.15em] text-black shadow-sm transition-all duration-200 hover:bg-stone-200 hover:shadow-md cursor-pointer"
+                onClick={openOrderModal}
+                className="inline-flex items-center gap-3 justify-center rounded bg-white hover:bg-slate-100 px-7 py-3.5 font-inter text-xs font-bold uppercase tracking-[0.15em] text-slate-950 shadow-md transition-all duration-200 cursor-pointer"
               >
                 <BookOpen className="w-4 h-4" />
-                Order Your Copy Here
+                Order Book &amp; Attend
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

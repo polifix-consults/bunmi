@@ -30,11 +30,12 @@ CREATE POLICY "Public research publications are readable by everyone"
   USING (true);
 
 DROP POLICY IF EXISTS "Service role can insert research publications" ON public.research_publications;
-CREATE POLICY "Service role can insert research publications"
+DROP POLICY IF EXISTS "Service role can manage research publications" ON public.research_publications;
+CREATE POLICY "Service role can manage research publications"
   ON public.research_publications
   FOR ALL
-  USING (true)
-  WITH CHECK (true);
+  USING (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role')
+  WITH CHECK (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role');
 
 -- Seed Data: Research Works & Publications
 INSERT INTO public.research_publications (id, title, kind, date, year, venue, abstract, tags, status, href, featured)
@@ -316,8 +317,8 @@ DROP POLICY IF EXISTS "Service role can manage media publications" ON public.med
 CREATE POLICY "Service role can manage media publications"
   ON public.media_publications
   FOR ALL
-  USING (true)
-  WITH CHECK (true);
+  USING (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role')
+  WITH CHECK (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role');
 
 -- Seed Data: Official PoliFIX Podcasts and Side Walk Parliament Newsletters
 INSERT INTO public.media_publications (id, type, title, platform, date, year, description, image_url, video_url, href, featured)
@@ -614,8 +615,8 @@ DROP POLICY IF EXISTS "Service role can manage policy videos" ON public.policy_v
 CREATE POLICY "Service role can manage policy videos"
   ON public.policy_videos
   FOR ALL
-  USING (true)
-  WITH CHECK (true);
+  USING (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role')
+  WITH CHECK (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role');
 
 -- Seed Data: Television Broadcasts, Policy Dialogues & Media Features
 INSERT INTO public.policy_videos (id, category_tag, network, title, date, year, type, description, video_url, thumbnail_url)
@@ -736,10 +737,11 @@ CREATE POLICY "Public can insert waitlist submissions"
   WITH CHECK (true);
 
 DROP POLICY IF EXISTS "Only authenticated/service can view waitlist submissions" ON public.waitlist_subscribers;
-CREATE POLICY "Only authenticated/service can view waitlist submissions"
+DROP POLICY IF EXISTS "Service role can view waitlist submissions" ON public.waitlist_subscribers;
+CREATE POLICY "Service role can view waitlist submissions"
   ON public.waitlist_subscribers
   FOR SELECT
-  USING (true);
+  USING (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role');
 
 
 -- ==============================================================================
@@ -762,10 +764,11 @@ CREATE POLICY "Public can insert contact messages"
   WITH CHECK (true);
 
 DROP POLICY IF EXISTS "Only authenticated/service can view contact messages" ON public.contact_messages;
-CREATE POLICY "Only authenticated/service can view contact messages"
+DROP POLICY IF EXISTS "Service role can view contact messages" ON public.contact_messages;
+CREATE POLICY "Service role can view contact messages"
   ON public.contact_messages
   FOR SELECT
-  USING (true);
+  USING (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role');
 
 
 -- ==============================================================================
@@ -780,4 +783,77 @@ CREATE POLICY "Public can view and download book files"
   ON storage.objects
   FOR SELECT
   USING (bucket_id = 'book');
+
+
+-- ==============================================================================
+-- 7. TABLE: orders (Book Orders & Launch Attendance)
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.orders (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  order_reference TEXT UNIQUE NOT NULL,
+  buyer_name TEXT,
+  buyer_email TEXT,
+  book_edition TEXT NOT NULL DEFAULT 'hardcover' CHECK (book_edition IN ('paperback', 'hardcover')),
+  quantity INTEGER NOT NULL DEFAULT 1 CHECK (quantity > 0),
+  expected_amount INTEGER NOT NULL CHECK (expected_amount > 0), -- Amount in cents
+  paid_amount INTEGER DEFAULT 0 CHECK (paid_amount >= 0),
+  refunded_amount INTEGER DEFAULT 0 CHECK (refunded_amount >= 0),
+  currency TEXT NOT NULL DEFAULT 'cad',
+  stripe_session_id TEXT UNIQUE,
+  stripe_payment_intent_id TEXT,
+  stripe_customer_id TEXT,
+  order_status TEXT NOT NULL DEFAULT 'pending' CHECK (order_status IN ('pending', 'paid', 'failed', 'cancelled', 'refunded', 'partially_refunded', 'disputed')),
+  payment_status TEXT NOT NULL DEFAULT 'unpaid' CHECK (payment_status IN ('unpaid', 'paid', 'refunded', 'partially_refunded')),
+  dispute_status TEXT DEFAULT NULL CHECK (dispute_status IN ('needs_response', 'under_review', 'won', 'lost')),
+  email_delivery_status TEXT NOT NULL DEFAULT 'pending' CHECK (email_delivery_status IN ('pending', 'sent', 'failed')),
+  email_attempts INTEGER NOT NULL DEFAULT 0,
+  email_last_error TEXT,
+  email_sent_at TIMESTAMP WITH TIME ZONE,
+  metadata JSONB DEFAULT '{}'::JSONB,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+ALTER TABLE public.orders
+  ADD COLUMN IF NOT EXISTS book_edition TEXT NOT NULL DEFAULT 'hardcover'
+  CHECK (book_edition IN ('paperback', 'hardcover'));
+
+CREATE INDEX IF NOT EXISTS idx_orders_reference ON public.orders(order_reference);
+CREATE INDEX IF NOT EXISTS idx_orders_stripe_session ON public.orders(stripe_session_id);
+CREATE INDEX IF NOT EXISTS idx_orders_buyer_email ON public.orders(buyer_email);
+CREATE INDEX IF NOT EXISTS idx_orders_status ON public.orders(order_status, email_delivery_status);
+
+-- Enable RLS: Strictly deny public access. No public policies exist.
+ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Service role full access to orders" ON public.orders;
+CREATE POLICY "Service role full access to orders"
+  ON public.orders
+  FOR ALL
+  USING (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role')
+  WITH CHECK (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role');
+
+
+-- ==============================================================================
+-- 8. TABLE: stripe_webhook_events (Stripe Webhook Idempotency & Audit)
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.stripe_webhook_events (
+  id TEXT PRIMARY KEY, -- Stripe Event ID (evt_...)
+  event_type TEXT NOT NULL,
+  api_version TEXT,
+  processed_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+  payload JSONB NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('processed', 'failed', 'ignored')),
+  error TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+ALTER TABLE public.stripe_webhook_events ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Service role full access to stripe_webhook_events" ON public.stripe_webhook_events;
+CREATE POLICY "Service role full access to stripe_webhook_events"
+  ON public.stripe_webhook_events
+  FOR ALL
+  USING (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role')
+  WITH CHECK (auth.jwt() ->> 'role' = 'service_role' OR current_user = 'service_role');
 

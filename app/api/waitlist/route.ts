@@ -2,26 +2,37 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { firstName, email, source } = await req.json();
-    const trimmedEmail = (email || "").trim();
-
-    if (!trimmedEmail) {
+    let body: Record<string, unknown> = {};
+    try {
+      body = await req.json();
+    } catch {
       return NextResponse.json(
-        { success: false, message: "Email is required." },
+        { success: false, message: "Invalid JSON payload." },
         { status: 400 }
       );
     }
 
+    const rawEmail = typeof body.email === "string" ? body.email.trim() : "";
+    const rawName = typeof body.firstName === "string" ? body.firstName.trim() : "";
+    const rawSource = typeof body.source === "string" ? body.source.trim() : "";
+
+    if (!rawEmail || rawEmail.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawEmail)) {
+      return NextResponse.json(
+        { success: false, message: "A valid email address is required." },
+        { status: 400 }
+      );
+    }
+
+    const firstName = rawName.slice(0, 100);
+    const source = rawSource ? rawSource.slice(0, 80) : "book_waitlist";
+
     const supabaseUrl =
       process.env.SUPABASE_URL ||
-      process.env.NEXT_PUBLIC_SUPABASE_URL ||
       "https://fbzmzvhuutzwcnspotzj.supabase.co";
     const supabaseKey =
-      process.env.SUPABASE_SECRET_KEY ||
-      process.env.NEXT_SUPABASE_SECRET_KEY ||
       process.env.SUPABASE_SERVICE_ROLE_KEY ||
+      process.env.SUPABASE_SECRET_KEY ||
       process.env.SUPABASE_ANON_KEY ||
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
       "";
 
     if (supabaseUrl && supabaseKey) {
@@ -34,9 +45,9 @@ export async function POST(req: Request) {
           Prefer: "return=minimal",
         },
         body: JSON.stringify({
-          first_name: (firstName || "").trim(),
-          email: trimmedEmail,
-          source: source || "book_waitlist",
+          first_name: firstName,
+          email: rawEmail,
+          source: source,
         }),
       });
 

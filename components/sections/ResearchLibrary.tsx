@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { useOrderModal } from "@/components/context/OrderModalContext";
 import { useWaitlistModal } from "@/components/context/WaitlistModalContext";
 import { RESEARCH, RESEARCH_INTRO, type ResearchWork } from "@/lib/content";
 import { cn } from "@/lib/cn";
@@ -163,6 +164,7 @@ function FeaturedWork({
   work: ResearchWork;
   reduceMotion: boolean;
 }) {
+  const { openOrderModal } = useOrderModal();
   const { openWaitlistModal } = useWaitlistModal();
 
   return (
@@ -205,15 +207,22 @@ function FeaturedWork({
           <p className="mt-4 max-w-2xl font-inter text-base font-light leading-relaxed text-slate-600">
             {work.abstract}
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={openOrderModal}
+              className="inline-flex items-center justify-center rounded bg-[#0A2540] px-6 py-3 font-inter text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors duration-200 hover:bg-[#061628] cursor-pointer"
+            >
+              Order Book &amp; Attend Launch
+            </button>
             <button
               type="button"
               onClick={openWaitlistModal}
-              className="inline-flex items-center justify-center rounded bg-[#0A2540] px-6 py-3 font-inter text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors duration-200 hover:bg-[#061628] cursor-pointer"
+              className="inline-flex items-center justify-center rounded border border-slate-300 px-5 py-3 font-inter text-xs font-semibold uppercase tracking-[0.12em] text-slate-700 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-950 cursor-pointer"
             >
-              Order Your Copy Here
+              Launch Updates
             </button>
-            <div className="flex flex-wrap gap-x-2 gap-y-1 font-inter text-[11px] uppercase tracking-[0.14em] text-slate-400">
+            <div className="flex flex-wrap gap-x-2 gap-y-1 font-inter text-[11px] uppercase tracking-[0.14em] text-slate-400 sm:ml-2">
               {work.tags.map((t) => (
                 <span key={t}>{t}</span>
               ))}

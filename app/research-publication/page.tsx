@@ -64,11 +64,13 @@ export default async function BookPage() {
     },
   };
 
+  const safeJsonLdString = JSON.stringify(collectionJsonLd).replace(/</g, "\\u003c");
+
   return (
     <main id="main">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLdString }}
       />
       <ResearchLibrary initialWorks={works} />
     </main>

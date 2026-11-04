@@ -69,9 +69,7 @@ export function renderOrderConfirmationHtml(order: OrderRecord): string {
             <td style="padding: 32px;">
               <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 700; color: #0F172A;">Thank you, ${safeName}!</h2>
               <p style="margin: 0 0 24px; font-size: 15px; line-height: 1.6; color: #475569;">
-               This pre-order confirms your attendance at the Book Launch and Policy Dialogue, taking place from 10:00 AM to 12:00 PM at Routunda of the Innovation Saskatchewan 140–10 Research Drive, Regina,. 
-Your copy of the book will be presented to you at the event, personally autographed by the author.
-Thank you for your support. I look forward to welcoming you for an engaging conversation on policy, innovation, and governance.
+               This pre-order confirms your attendance at the Book Launch and Policy Dialogue, taking place from 11:00 AM to 12:00 PM at  CB 139, College Avenue Campus, University of Regina. Thank you for your support. I look forward to welcoming you for an engaging conversation on policy, innovation, and governance.
               </p>
 
               <!-- Order Summary Card -->

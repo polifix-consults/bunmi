@@ -22,6 +22,14 @@ async function verify() {
     if (res.ok) {
       const data = await res.json();
       console.log(`✓ ${table}: ${data.length} records verified online`);
+      if (table === 'research_publications') {
+        const item = data.find(d => d.id === 'cso-budgeting-process-nigeria');
+        if (item) console.log(`  Sample research abstract [${item.id}]:`, item.abstract.slice(0, 100) + '...');
+      }
+      if (table === 'media_publications') {
+        const item = data.find(d => d.id === 'pod-growth');
+        if (item) console.log(`  Sample media description [${item.id}]:`, item.description.slice(0, 100) + '...');
+      }
     } else {
       console.log(`✗ ${table}: Error ${res.status}`);
     }

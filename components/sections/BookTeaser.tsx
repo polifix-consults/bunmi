@@ -54,10 +54,6 @@ export function BookTeaser() {
               <p className="font-inter text-sm text-stone-300 font-light leading-relaxed">
                 Order your autographed copy today. Delivery is free on orders shipped to Canada and the United States.
               </p>
-              <div className="pt-1 text-xs text-stone-400 font-light leading-relaxed">
-                <p className="text-white font-medium">CB 139, College Avenue Campus, University of Regina</p>
-                <p>📍 2155 College Ave, Regina, SK</p>
-              </div>
             </div>
             <div className="shrink-0">
               <button

@@ -11,7 +11,6 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
-import { useWaitlistModal } from "@/components/context/WaitlistModalContext";
 import {
   BOOK_CURRENCY,
   BOOK_EDITIONS,
@@ -26,14 +25,12 @@ type OrderModalProps = {
 };
 
 export function OrderCheckoutModal({ isOpen, onClose }: OrderModalProps) {
-  const { openWaitlistModal } = useWaitlistModal();
   const [buyerName, setBuyerName] = useState("");
   const [buyerEmail, setBuyerEmail] = useState("");
   const [bookEdition, setBookEdition] = useState<BookEdition>("hardcover");
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [notReadyForCheckout, setNotReadyForCheckout] = useState(false);
 
   const pricePerUnit = BOOK_EDITION_PRICES_IN_CENTS[bookEdition] / 100;
   const totalPrice = (quantity * pricePerUnit).toFixed(2);
@@ -62,7 +59,6 @@ export function OrderCheckoutModal({ isOpen, onClose }: OrderModalProps) {
       setQuantity(1);
       setLoading(false);
       setErrorMessage(null);
-      setNotReadyForCheckout(false);
     }
   }, [isOpen]);
 
@@ -86,9 +82,6 @@ export function OrderCheckoutModal({ isOpen, onClose }: OrderModalProps) {
       const data = await res.json();
 
       if (!res.ok) {
-        if (res.status === 503) {
-          setNotReadyForCheckout(true);
-        }
         throw new Error(data.error || "Unable to initiate checkout session.");
       }
 
@@ -103,13 +96,6 @@ export function OrderCheckoutModal({ isOpen, onClose }: OrderModalProps) {
       setErrorMessage(msg);
       setLoading(false);
     }
-  }
-
-  function handleSwitchToWaitlist() {
-    onClose();
-    setTimeout(() => {
-      openWaitlistModal();
-    }, 150);
   }
 
   return (
@@ -162,21 +148,9 @@ export function OrderCheckoutModal({ isOpen, onClose }: OrderModalProps) {
               >
                 Copy and Paste Governance
               </h2>
-              <p className="text-xs text-slate-600 font-light mb-4">
+              <p className="text-xs text-slate-600 font-light mb-6">
                 Why Borrowed Policies Fail African Realities &bull; By Olubunmi Ayantunji
               </p>
-
-              {/* Delivery Policy & Event Venue Notice */}
-              <div className="mb-6 rounded-lg bg-[#EBF2F9] border border-[#0A2540]/15 p-3.5 text-xs text-slate-700 space-y-1.5">
-                <p className="font-semibold text-[#0A2540] flex items-center gap-1.5">
-                  <span>Delivery is free on orders shipped to Canada and the United States.</span>
-                </p>
-                <div className="text-[11px] text-slate-600 pt-1 border-t border-[#0A2540]/10 leading-normal">
-                  <span className="font-semibold text-slate-900">Event Venue: </span>
-                  <span>CB 139, College Avenue Campus, University of Regina</span>
-                  <span className="block mt-0.5 text-slate-600">📍 2155 College Ave, Regina, SK</span>
-                </div>
-              </div>
 
               {/* Buyer details and edition selection */}
               <div className="space-y-4 mb-6">
@@ -317,22 +291,11 @@ export function OrderCheckoutModal({ isOpen, onClose }: OrderModalProps) {
                 </div>
               </div>
 
-              {/* Error or Not Ready Banner */}
+              {/* Error Banner */}
               {errorMessage && (
                 <div className="mb-6 rounded-lg bg-red-50 border border-red-200 p-4 text-xs text-red-800 flex items-start gap-3">
                   <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                  <div className="space-y-2">
-                    <p>{errorMessage}</p>
-                    {notReadyForCheckout && (
-                      <button
-                        type="button"
-                        onClick={handleSwitchToWaitlist}
-                        className="font-bold underline text-[#0A2540] hover:text-[#061628]"
-                      >
-                        Join the VIP Launch Waitlist instead &rarr;
-                      </button>
-                    )}
-                  </div>
+                  <p>{errorMessage}</p>
                 </div>
               )}
 
@@ -356,15 +319,9 @@ export function OrderCheckoutModal({ isOpen, onClose }: OrderModalProps) {
                   )}
                 </button>
 
-                <div className="text-center pt-2">
-                  <button
-                    type="button"
-                    onClick={handleSwitchToWaitlist}
-                    className="text-xs text-slate-500 hover:text-[#0A2540] transition-colors font-light"
-                  >
-                    Not ready to order? <span className="underline font-normal">Join the priority waitlist for event updates</span>
-                  </button>
-                </div>
+                <p className="text-center text-xs text-slate-500 font-light pt-1">
+                  Delivery is free on orders shipped to Canada and the United States.
+                </p>
               </div>
 
               {/* Trust Badge */}

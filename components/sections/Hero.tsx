@@ -162,7 +162,7 @@ export function Hero() {
                 <div className="order-1 lg:order-2 lg:col-span-6 flex justify-center lg:justify-end">
                   <div className="relative w-full max-w-[240px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[490px] xl:max-w-[520px] aspect-[4/5] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
                     <Image
-                      src="/images/pictures/mainpic1.jpeg"
+                      src="/images/pictures/suitimg.jpeg"
                       alt="Olubunmi (Bunmi) Ayantunji"
                       fill
                       priority
@@ -262,10 +262,9 @@ export function Hero() {
           <div>
             © {new Date().getFullYear()} OLUBUNMI AYANTUNJI. ALL RIGHTS RESERVED.
           </div>
-          <div>AVAILABLE TO TRAVEL ANYWHERE</div>
+          <div>AVAILABLE TO TRAVEL</div>
         </footer>
       </div>
     </section>
   );
 }
-

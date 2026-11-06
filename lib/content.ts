@@ -116,7 +116,7 @@ export const EDUCATION: EducationEntry[] = [
   {
     qualification: "Executive Certificate in Anti-Corruption & Governance",
     institution: "Transparency International School on Integrity, Lithuania",
-    note: "Integrity & Compliance",
+    note: "Alumnus",
   },
 ];
 

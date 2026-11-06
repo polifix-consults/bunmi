@@ -258,7 +258,7 @@ export function OrderCheckoutModal({ isOpen, onClose }: OrderModalProps) {
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <label className="font-inter text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-700">
-                      Quantity of Autographed Copies
+                      Quantity
                     </label>
                     <p className="text-[11px] text-slate-500 font-light mt-0.5">
                       Each copy reserves guaranteed seating

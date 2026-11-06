@@ -66,7 +66,7 @@ export function ContactSection() {
                       Based
                     </h3>
                     <p className="mt-2 font-inter text-[0.9375rem] font-light text-slate-600">
-                      Available to travel anywhere in the world
+                      Available to travel
                     </p>
                   </div>
                 </li>

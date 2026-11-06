@@ -123,7 +123,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-slate-200 pt-7 text-[11px] text-slate-500 font-inter sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {SITE.name}. All Rights Reserved.</p>
-          <p className="font-inter">Available to Travel Anywhere</p>
+          <p className="font-inter">Available to Travel</p>
         </div>
       </div>
     </footer>

@@ -45,7 +45,7 @@ export function AboutExecutive() {
             <Reveal delay={0.12}>
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
                 <Image
-                  src="/images/pictures/mainpic2.jpeg"
+                  src="/images/pictures/aboutimg.jpeg"
                   alt="Olubunmi (Bunmi) Ayantunji"
                   fill
                   priority

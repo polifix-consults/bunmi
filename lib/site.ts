@@ -25,7 +25,7 @@ export const SITE = {
     "Olubunmi (Bunmi) Ayantunji is a legal practitioner by training and a public policy practitioner whose work focuses on strategic governance, legislation, and institutional development. With nearly a decade of experience in legislative governance and public policy, he brings a practical perspective to designing effective institutions and locally grounded policy solutions and innovation.",
   locale: "en_CA",
   email: "olubunmiayantunji@gmail.com",
-  locations: "Available to travel anywhere",
+  locations: "Available to travel",
   socials: {
     linkedin: "https://www.linkedin.com/in/bunmi-ayantunji-860355134",
     x: "https://x.com/oluubunmi",

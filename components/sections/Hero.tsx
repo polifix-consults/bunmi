@@ -117,7 +117,7 @@ export function Hero() {
                       Olubunmi Ayantunji takes readers on a compelling journey into one of Africa&apos;s most enduring governance challenges: why do some imported policy solutions work, while others, despite the best intentions, fail to create meaningful change?
                     </p>
                     <div className="font-inter text-xs uppercase tracking-widest leading-relaxed text-slate-500 font-light">
-                      Available in Hardcover, Paperback &amp; Digital Editions
+                      Available in Hardcover, Softcover &amp; Digital Editions
                     </div>
                   </div>
 
@@ -268,3 +268,4 @@ export function Hero() {
     </section>
   );
 }
+

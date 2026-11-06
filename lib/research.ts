@@ -33,7 +33,7 @@ export const RESEARCH_INTRO =
 
 /**
  * Primary list of research publications, policy works, and newsletters by Olubunmi Ayantunji.
- * Used for local state and as initial/fallback data for Supabase integration.
+ * Sourced directly from published repositories, legislative documents, podcast episodes, and newsletter archives.
  */
 export const RESEARCH_WORKS: ResearchWork[] = [
   {
@@ -74,7 +74,7 @@ export const RESEARCH_WORKS: ResearchWork[] = [
     kind: "Policy Brief / Legislative Draft",
     venue: "National Assembly of Nigeria · Legislative Drafting Committee",
     abstract:
-      "Ayantunji served as a consultant and legislative draftsman for a Nigerian parliament committee to structure this bill, which aims to prohibit the manufacture and use of commercial plastic bags to mitigate environmental degradation.",
+      "A Bill for an Act to prohibit the manufacture, importation, sale, and use of plastic bags for commercial and household packaging in Nigeria, to mandate retailer provision of paper alternatives, and to address plastic waste accumulation and environmental degradation. Structured and drafted for parliamentary consideration in Nigeria's National Assembly.",
     tags: ["Legislative Drafting", "Environmental Policy", "Statutory Reform", "National Assembly"],
     status: "Legislative Draft",
   },
@@ -86,7 +86,7 @@ export const RESEARCH_WORKS: ResearchWork[] = [
     kind: "Essay / Media",
     venue: "The Africa Hour Podcast (APRI)",
     abstract:
-      "An analysis of the socio-economic and legal implications of Nigeria's transition to a cashless economy, the Central Bank's implementation of the eNaira, and the regulatory hurdles of digital payment adoption.",
+      "Despite Central Bank policies dating from 2012 cash fees to the 2021 eNaira launch, cash accounted for 90% of Nigerian transactions until the late-2022 currency redesign and cash scarcity crisis forced a rapid shift. On Episode 4 of The Africa Hour, Olubunmi Ayantunji joins TechPoint's Chimgozirim Nwokoma and SBM Intelligence's Kelechukwu Ogu to examine the structural roadblocks to a cashless economy and the policy steps needed next.",
     tags: ["Cashless Economy", "eNaira", "Digital Governance", "APRI"],
     status: "Podcast / Essay",
     href: "https://afripoli.org/podcast/nigerias-cashless-transition-how-long-will-it-take",
@@ -97,9 +97,9 @@ export const RESEARCH_WORKS: ResearchWork[] = [
     date: "April 2022",
     title: "The Role of Civil Society Organizations (CSOs) in Strengthening the Budgeting Process in Nigeria",
     kind: "Report / Working Paper",
-    venue: "National Institute for Legislative and Democratic Studies (NILDS) Repository",
+    venue: "National Institute for Legislative and Democratic Studies (NILDS) Institutional Repository",
     abstract:
-      "A primary research study examining how civil society organizations hold the 9th National Assembly accountable during budget processes. The paper identifies systemic factors militating against legislative budgeting and proposes reforms based on primary interview data.",
+      "This research examines the accountability works of Civil Society Organizations in strengthening the budget process in the 9th National Assembly in Nigeria and identifies the factors militating against openness and transparency in legislative budgeting. Drawing on primary survey data and structured interviews, the study assesses institutional hurdles, bureaucratic cooperation, and technical monitoring capacity, proposing focused networking and reform measures for civil society engagement.",
     tags: ["Budgeting Process", "Civil Society", "Legislative Accountability", "NILDS"],
     status: "Open access",
     href: "https://ir.nilds.gov.ng/handle/123456789/978?show=full",
@@ -112,7 +112,7 @@ export const RESEARCH_WORKS: ResearchWork[] = [
     kind: "Essay / Media",
     venue: "THISDAYLive",
     abstract:
-      "An extensive interview detailing the founding of The Policy Roundtable. Ayantunji discusses his shift from legal practice to public policy, and how his NGO simplifies complex government policies to foster youth civic engagement.",
+      "In this THISDAY Politics feature, Olubunmi Ayantunji, legal practitioner and convener of The Policy Roundtable, discusses transitioning from corporate legal practice to public policy, demystifying complex governance frameworks for everyday citizens, and igniting patriotism and active civic engagement among young Nigerians to overcome political apathy.",
     tags: ["Civic Engagement", "Youth Advocacy", "The Policy Roundtable", "THISDAY"],
     status: "Media Feature",
     href: "https://www.thisdaylive.com/2021/10/07/my-mission-is-to-change-the-narrative-ignite-sense-of-patriotism-in-youths/",

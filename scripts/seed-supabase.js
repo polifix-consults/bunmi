@@ -65,7 +65,7 @@ const researchData = [
     kind: "Policy Brief / Legislative Draft",
     venue: "National Assembly of Nigeria · Legislative Drafting Committee",
     abstract:
-      "Ayantunji served as a consultant and legislative draftsman for a Nigerian parliament committee to structure this bill, which aims to prohibit the manufacture and use of commercial plastic bags to mitigate environmental degradation.",
+      "A Bill for an Act to prohibit the manufacture, importation, sale, and use of plastic bags for commercial and household packaging in Nigeria, to mandate retailer provision of paper alternatives, and to address plastic waste accumulation and environmental degradation. Structured and drafted for parliamentary consideration in Nigeria's National Assembly.",
     tags: ["Legislative Drafting", "Environmental Policy", "Statutory Reform", "National Assembly"],
     status: "Legislative Draft",
     featured: false,
@@ -78,7 +78,7 @@ const researchData = [
     kind: "Essay / Media",
     venue: "The Africa Hour Podcast (APRI)",
     abstract:
-      "An analysis of the socio-economic and legal implications of Nigeria's transition to a cashless economy, the Central Bank's implementation of the eNaira, and the regulatory hurdles of digital payment adoption.",
+      "Despite Central Bank policies dating from 2012 cash fees to the 2021 eNaira launch, cash accounted for 90% of Nigerian transactions until the late-2022 currency redesign and cash scarcity crisis forced a rapid shift. On Episode 4 of The Africa Hour, Olubunmi Ayantunji joins TechPoint's Chimgozirim Nwokoma and SBM Intelligence's Kelechukwu Ogu to examine the structural roadblocks to a cashless economy and the policy steps needed next.",
     tags: ["Cashless Economy", "eNaira", "Digital Governance", "APRI"],
     status: "Podcast / Essay",
     href: "https://afripoli.org/podcast/nigerias-cashless-transition-how-long-will-it-take",
@@ -92,7 +92,7 @@ const researchData = [
     kind: "Report / Working Paper",
     venue: "National Institute for Legislative and Democratic Studies (NILDS) Repository",
     abstract:
-      "A primary research study examining how civil society organizations hold the 9th National Assembly accountable during budget processes. The paper identifies systemic factors militating against legislative budgeting and proposes reforms based on primary interview data.",
+      "This research examines the accountability works of Civil Society Organizations in strengthening the budget process in the 9th National Assembly in Nigeria and identifies the factors militating against openness and transparency in legislative budgeting. Drawing on primary survey data and structured interviews, the study assesses institutional hurdles, bureaucratic cooperation, and technical monitoring capacity, proposing focused networking and reform measures for civil society engagement.",
     tags: ["Budgeting Process", "Civil Society", "Legislative Accountability", "NILDS"],
     status: "Open access",
     href: "https://ir.nilds.gov.ng/handle/123456789/978?show=full",
@@ -106,7 +106,7 @@ const researchData = [
     kind: "Essay / Media",
     venue: "THISDAYLive",
     abstract:
-      "An extensive interview detailing the founding of The Policy Roundtable. Ayantunji discusses his shift from legal practice to public policy, and how his NGO simplifies complex government policies to foster youth civic engagement.",
+      "In this THISDAY Politics feature, Olubunmi Ayantunji, legal practitioner and convener of The Policy Roundtable, discusses transitioning from corporate legal practice to public policy, demystifying complex governance frameworks for everyday citizens, and igniting patriotism and active civic engagement among young Nigerians to overcome political apathy.",
     tags: ["Civic Engagement", "Youth Advocacy", "The Policy Roundtable", "THISDAY"],
     status: "Media Feature",
     href: "https://www.thisdaylive.com/2021/10/07/my-mission-is-to-change-the-narrative-ignite-sense-of-patriotism-in-youths/",
@@ -291,7 +291,7 @@ const mediaData = [
     date: "2024",
     year: 2024,
     description:
-      "Exploring professional resilience, career growth, navigating international transitions, and building impactful leadership across public policy and civic spaces.",
+      "Welcome to the PoliFIX Podcast! In this episode, we explore the realities of career growth, leadership, resilience, and personal development as an immigrant. Discover how these immigrant professionals overcome obstacles, embrace change, and build a growth mindset to thrive in today’s evolving world of work.",
     image_url: "https://img.youtube.com/vi/fv_vdIQ-7e4/hqdefault.jpg",
     video_url: "https://youtu.be/fv_vdIQ-7e4",
     href: "https://youtu.be/fv_vdIQ-7e4",
@@ -305,7 +305,7 @@ const mediaData = [
     date: "2024",
     year: 2024,
     description:
-      "Exploring the immigrant journey, public sector career transition, and navigating public service institutions to achieve tangible civic impact.",
+      "From an immigrant professional to entering politics: she came as an immigrant, stayed as an international student, and rose through corporate boardrooms and community halls to make moves in politics. A masterclass in resilience, identity, and leadership.",
     image_url: "https://img.youtube.com/vi/PxAO4J2UaAc/hqdefault.jpg",
     video_url: "https://youtu.be/PxAO4J2UaAc",
     href: "https://youtu.be/PxAO4J2UaAc",
@@ -319,7 +319,7 @@ const mediaData = [
     date: "2024",
     year: 2024,
     description:
-      "A critical inquiry into subnational public expenditure, fiscal discipline, and aligning budget frameworks with real economic development.",
+      "Learn the nexus between great economic policies and effective fiscal processes. Why some countries borrow and some other lend!.",
     image_url: "https://img.youtube.com/vi/1EWpeQT5VqE/hqdefault.jpg",
     video_url: "https://youtu.be/1EWpeQT5VqE",
     href: "https://youtu.be/1EWpeQT5VqE",
@@ -333,7 +333,7 @@ const mediaData = [
     date: "2024",
     year: 2024,
     description:
-      "Deconstructing systemic policy breakdown, administrative inertia, and the diagnostic metrics for identifying and correcting governance failure.",
+      "What exactly is FAILURE when it comes to project management within governments? Catch up with the latest episode with Kris Wanner",
     image_url: "https://img.youtube.com/vi/uaAb8wBIf-s/hqdefault.jpg",
     video_url: "https://youtu.be/uaAb8wBIf-s",
     href: "https://youtu.be/uaAb8wBIf-s",
@@ -347,7 +347,7 @@ const mediaData = [
     date: "2024",
     year: 2024,
     description:
-      "Analyzing the critical connection between public financial management, governmental fiscal mechanisms, institutional capacity, and effective infrastructure project delivery.",
+      "In this episode of The Civic Policy Archive Podcast, Kris Wanner discusses how data can be used for evidence-based public policy decisions and the factors that impede government projects.",
     image_url: "https://img.youtube.com/vi/ADBxsLJy4hc/hqdefault.jpg",
     video_url: "https://youtu.be/ADBxsLJy4hc",
     href: "https://youtu.be/ADBxsLJy4hc",
@@ -361,7 +361,7 @@ const mediaData = [
     date: "2024",
     year: 2024,
     description:
-      "Exploring digital public infrastructure, transparency standards, and the roadmap for modernizing governance and civic participation in developing economies.",
+      "You are listening to the first episode of The Civic Policy Archive. In this episode, Justin Longo, PhD, an Assistant Professor at the Johnson Shoyama Graduate School of Public Policy at the University of Regina, joins host Olubunmi Ayantunji to explore significant and unique contexts, particularly in developing countries, to better understand open governance.",
     image_url: "https://img.youtube.com/vi/HLZVVu2U2uc/hqdefault.jpg",
     video_url: "https://youtu.be/HLZVVu2U2uc",
     href: "https://youtu.be/HLZVVu2U2uc",
@@ -375,7 +375,7 @@ const mediaData = [
     date: "2024",
     year: 2024,
     description:
-      "An introductory exploration of statecraft, evidence-based public policy formulation, and the overarching mission of the PoliFIX Podcast.",
+      "An introductory montage exploring public policy, statecraft, and governance conversations.",
     image_url: "https://img.youtube.com/vi/_rNVb6jZLaw/hqdefault.jpg",
     video_url: "https://youtu.be/_rNVb6jZLaw",
     href: "https://youtu.be/_rNVb6jZLaw",

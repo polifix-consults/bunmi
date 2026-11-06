@@ -102,7 +102,7 @@ export async function POST(req: NextRequest) {
     }
     if (!isBookEdition(rawEdition)) {
       return NextResponse.json(
-        { error: "Choose either the Paperback or Hardcover edition." },
+        { error: "Choose either the Softcover or Hardcover edition." },
         { status: 400 }
       );
     }
@@ -222,3 +222,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
+

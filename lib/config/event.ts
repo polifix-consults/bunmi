@@ -23,7 +23,7 @@ export interface EventConfig {
 
 export function getEventConfig(): EventConfig {
   const currency = (process.env.BOOK_CURRENCY || "cad").toLowerCase();
-  const priceInCents = parseInt(process.env.BOOK_PRICE_CENTS || "4500", 10);
+  const priceInCents = parseInt(process.env.BOOK_PRICE_CENTS || "3999", 10);
   const maxCopies = parseInt(process.env.MAX_COPIES_PER_ORDER || "5", 10);
 
   // Formatter for display

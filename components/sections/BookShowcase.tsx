@@ -80,7 +80,7 @@ export function BookShowcase() {
                     Order Inscribed Copy
                   </h3>
                   <p className="mt-2 text-sm text-ink-soft leading-relaxed font-light">
-                    Every order reserves a personally inscribed hardcover edition and includes official admission to the Book Launch and Policy Dialogue.
+                    Every order reserves a personally inscribed copy (Softcover or Hardcover) and includes official admission to the Book Launch and Policy Dialogue.
                   </p>
                   <button
                     type="button"
@@ -102,3 +102,4 @@ export function BookShowcase() {
     </Section>
   );
 }
+

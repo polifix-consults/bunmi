@@ -131,7 +131,7 @@ export const FEATURED_MEDIA = {
   platform: mediaAppearances[0].category_tag,
   title: mediaAppearances[0].title,
   description:
-    "Analyzing Nigerian democracy, youth participation in electoral processes, and the power of the electorate in modern governance.",
+    "Welcome to the PoliFIX Podcast! In this episode, we explore the realities of career growth, leadership, resilience, and personal development as an immigrant.",
   href: mediaAppearances[0].video_url,
   video: "/videos/featured.mp4",
   poster: mediaAppearances[0].thumbnail_url,

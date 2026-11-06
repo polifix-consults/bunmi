@@ -162,9 +162,21 @@ export function OrderCheckoutModal({ isOpen, onClose }: OrderModalProps) {
               >
                 Copy and Paste Governance
               </h2>
-              <p className="text-xs text-slate-600 font-light mb-6">
+              <p className="text-xs text-slate-600 font-light mb-4">
                 Why Borrowed Policies Fail African Realities &bull; By Olubunmi Ayantunji
               </p>
+
+              {/* Delivery Policy & Event Venue Notice */}
+              <div className="mb-6 rounded-lg bg-[#EBF2F9] border border-[#0A2540]/15 p-3.5 text-xs text-slate-700 space-y-1.5">
+                <p className="font-semibold text-[#0A2540] flex items-center gap-1.5">
+                  <span>Delivery is free on orders shipped to Canada and the United States.</span>
+                </p>
+                <div className="text-[11px] text-slate-600 pt-1 border-t border-[#0A2540]/10 leading-normal">
+                  <span className="font-semibold text-slate-900">Event Venue: </span>
+                  <span>CB 139, College Avenue Campus, University of Regina</span>
+                  <span className="block mt-0.5 text-slate-600">📍 2155 College Ave, Regina, SK</span>
+                </div>
+              </div>
 
               {/* Buyer details and edition selection */}
               <div className="space-y-4 mb-6">

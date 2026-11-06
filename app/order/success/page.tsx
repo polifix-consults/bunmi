@@ -174,26 +174,29 @@ export default async function OrderSuccessPage({ searchParams }: SuccessPageProp
             </div>
           )}
 
-          {/* Event & In-Person Pickup Notice */}
+          {/* Event & Book Delivery Notice */}
           <div className="mb-8 space-y-2.5 border-l-4 border-accent bg-accent-tint p-5">
             <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent">
               <BookOpen className="w-4 h-4" />
-              Event Admission &amp; Book Pickup
+              Event Admission &amp; Book Delivery
             </h2>
             <p className="text-sm font-light leading-relaxed text-ink-soft">
-              <strong>There is no postal delivery.</strong> You will collect your
+              Delivery is free on orders shipped to Canada and the United States. You can also collect your
               autographed {order ? getBookEditionLabel(order.book_edition).toLowerCase() : "book"} edition
               at the registration desk upon arriving at the event.
             </p>
-            <div className="space-y-1 pt-1 text-xs text-ink-soft">
+            <div className="space-y-1.5 pt-1 text-xs text-ink-soft">
               <p className="flex items-center gap-2">
                 <Clock className="h-3.5 w-3.5 shrink-0 text-ink-faint" />
                 <span><strong>Date:</strong> {config.dateText}</span>
               </p>
-              <p className="flex items-center gap-2">
-                <MapPin className="h-3.5 w-3.5 shrink-0 text-ink-faint" />
-                <span><strong>Venue:</strong> {config.venueText}</span>
-              </p>
+              <div className="flex items-start gap-2">
+                <MapPin className="h-3.5 w-3.5 shrink-0 text-ink-faint mt-0.5" />
+                <div>
+                  <p><strong>Venue:</strong> CB 139, College Avenue Campus, University of Regina</p>
+                  <p className="text-ink-faint mt-0.5">📍 2155 College Ave, Regina, SK</p>
+                </div>
+              </div>
               <p className="flex items-center gap-2">
                 <Mail className="h-3.5 w-3.5 shrink-0 text-ink-faint" />
                 <span><strong>Proof of Entry:</strong> Your Order Reference or email confirmation</span>

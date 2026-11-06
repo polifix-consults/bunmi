@@ -82,6 +82,16 @@ export function BookShowcase() {
                   <p className="mt-2 text-sm text-ink-soft leading-relaxed font-light">
                     Every order reserves a personally inscribed copy (Softcover or Hardcover) and includes official admission to the Book Launch and Policy Dialogue.
                   </p>
+
+                  <div className="mt-4 border-t border-line/60 pt-3.5 space-y-1.5 text-xs text-ink-soft">
+                    <p className="font-semibold text-accent">
+                      Delivery is free on orders shipped to Canada and the United States.
+                    </p>
+                    <div className="pt-1 text-[11px] leading-relaxed text-ink-faint">
+                      <p className="font-medium text-ink">CB 139, College Avenue Campus, University of Regina</p>
+                      <p>📍 2155 College Ave, Regina, SK</p>
+                    </div>
+                  </div>
                   <button
                     type="button"
                     onClick={openOrderModal}

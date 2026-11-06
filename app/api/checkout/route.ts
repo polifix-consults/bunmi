@@ -175,7 +175,7 @@ export async function POST(req: NextRequest) {
               unit_amount: pricePerUnit,
               product_data: {
                 name: `${config.bookTitle} — ${editionLabel} & Launch Admission`,
-                description: `Personally autographed ${editionLabel.toLowerCase()} copy with official admission to the ${config.title}. Collect your book in person at the event.`,
+                description: `Personally autographed ${editionLabel.toLowerCase()} copy. Delivery is free on orders shipped to Canada and the United States. Official admission to the ${config.title} included.`,
               },
             },
             quantity,
@@ -197,7 +197,7 @@ export async function POST(req: NextRequest) {
         custom_text: {
           submit: {
             message:
-              `Your ${editionLabel.toLowerCase()} purchase confirms your admission to the Book Launch & Policy Dialogue. Collect your autographed copy at the venue registration desk.`,
+              `Your ${editionLabel.toLowerCase()} purchase confirms your admission to the Book Launch & Policy Dialogue at CB 139, College Avenue Campus, University of Regina (📍 2155 College Ave, Regina, SK). Delivery is free on orders shipped to Canada and the United States.`,
           },
         },
       },

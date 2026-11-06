@@ -15,10 +15,13 @@ export interface EventConfig {
   maxCopiesPerOrder: number;
   dateText: string;
   venueText: string;
+  venueName: string;
+  venueAddress: string;
   cityCountry: string;
   supportEmail: string;
   checkoutEnabled: boolean;
   refundPolicyText: string;
+  deliveryPolicyText: string;
 }
 
 export function getEventConfig(): EventConfig {
@@ -36,6 +39,16 @@ export function getEventConfig(): EventConfig {
     process.env.CHECKOUT_ENABLED === "true" &&
     Boolean(process.env.STRIPE_SECRET_KEY);
 
+  const venueName =
+    process.env.EVENT_VENUE_NAME ||
+    "CB 139, College Avenue Campus, University of Regina";
+  const venueAddress =
+    process.env.EVENT_VENUE_ADDRESS ||
+    "📍 2155 College Ave, Regina, SK";
+  const venueText =
+    process.env.EVENT_VENUE_TEXT ||
+    `${venueName}, ${venueAddress.replace("📍 ", "")}`;
+
   return {
     title: process.env.EVENT_TITLE || "Book Launch and Policy Dialogue",
     bookTitle: "Copy and Paste Governance",
@@ -48,12 +61,15 @@ export function getEventConfig(): EventConfig {
     dateText:
       process.env.EVENT_DATE_TEXT ||
       "To be announced (all registered attendees will receive email notification)",
-    venueText: process.env.EVENT_VENUE_TEXT || "To be announced",
+    venueText,
+    venueName,
+    venueAddress,
     cityCountry: process.env.EVENT_CITY_COUNTRY || "Canada",
     supportEmail: process.env.CONTACT_SUPPORT_EMAIL || "info@olubunmiayantunji.com",
     checkoutEnabled: isCheckoutEnabled,
+    deliveryPolicyText: "Delivery is free on orders shipped to Canada and the United States.",
     refundPolicyText:
-      "Orders include personal book reservation and launch admission. For inquiries or refund requests, please contact our team at " +
+      "Orders include personal book reservation and launch admission. Delivery is free on orders shipped to Canada and the United States. For inquiries or refund requests, please contact our team at " +
       (process.env.CONTACT_SUPPORT_EMAIL || "info@olubunmiayantunji.com") +
       ".",
   };

@@ -51,9 +51,13 @@ export function BookTeaser() {
               <h3 className="font-inter text-base sm:text-lg font-bold uppercase tracking-[0.08em] text-white">
                 Book Launch &amp; Attendance
               </h3>
-              <p className="font-inter text-sm text-stone-400 font-light leading-relaxed">
-                Order your autographed copy today. Each purchase includes admission to the Book Launch and Policy Dialogue with pickup at the event.
+              <p className="font-inter text-sm text-stone-300 font-light leading-relaxed">
+                Order your autographed copy today. Delivery is free on orders shipped to Canada and the United States.
               </p>
+              <div className="pt-1 text-xs text-stone-400 font-light leading-relaxed">
+                <p className="text-white font-medium">CB 139, College Avenue Campus, University of Regina</p>
+                <p>📍 2155 College Ave, Regina, SK</p>
+              </div>
             </div>
             <div className="shrink-0">
               <button

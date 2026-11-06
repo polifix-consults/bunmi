@@ -37,8 +37,10 @@ export function renderOrderConfirmationHtml(order: OrderRecord): string {
   const safeEdition = escapeHtml(getBookEditionLabel(order.book_edition));
   const safeEventTitle = escapeHtml(config.title);
   const safeDate = escapeHtml(config.dateText);
-  const safeVenue = escapeHtml(config.venueText);
+  const safeVenueName = escapeHtml(config.venueName || "CB 139, College Avenue Campus, University of Regina");
+  const safeVenueAddress = escapeHtml(config.venueAddress || "📍 2155 College Ave, Regina, SK");
   const safeSupport = escapeHtml(config.supportEmail);
+  const safeDelivery = escapeHtml(config.deliveryPolicyText || "Delivery is free on orders shipped to Canada and the United States.");
   const formattedTotal = formatCurrency(order.paid_amount, order.currency);
 
   return `<!DOCTYPE html>
@@ -69,7 +71,7 @@ export function renderOrderConfirmationHtml(order: OrderRecord): string {
             <td style="padding: 32px;">
               <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 700; color: #0F172A;">Thank you, ${safeName}!</h2>
               <p style="margin: 0 0 24px; font-size: 15px; line-height: 1.6; color: #475569;">
-               This pre-order confirms your attendance at the Book Launch and Policy Dialogue, taking place from 11:00 AM to 12:00 PM at  CB 139, College Avenue Campus, University of Regina. Thank you for your support. I look forward to welcoming you for an engaging conversation on policy, innovation, and governance.
+               This pre-order confirms your attendance at the Book Launch and Policy Dialogue, taking place from 11:00 AM to 12:00 PM at CB 139, College Avenue Campus, University of Regina (📍 2155 College Ave, Regina, SK). Thank you for your support. I look forward to welcoming you for an engaging conversation on policy, innovation, and governance.
               </p>
 
               <!-- Order Summary Card -->
@@ -107,14 +109,18 @@ export function renderOrderConfirmationHtml(order: OrderRecord): string {
                 </tr>
               </table>
 
-              <!-- Pickup & Event Instructions -->
-              <h3 style="margin: 0 0 12px; font-size: 16px; font-weight: 700; color: #0A2540;">Book Pickup &amp; Event Details</h3>
+              <!-- Delivery & Event Instructions -->
+              <h3 style="margin: 0 0 12px; font-size: 16px; font-weight: 700; color: #0A2540;">Book Delivery &amp; Event Details</h3>
               <div style="background-color: #EBF2F9; border-left: 3px solid #0A2540; padding: 16px; border-radius: 4px; margin-bottom: 24px;">
                 <p style="margin: 0 0 8px; font-size: 14px; color: #0F172A;"><strong>Event:</strong> ${safeEventTitle}</p>
                 <p style="margin: 0 0 8px; font-size: 14px; color: #334155;"><strong>Date &amp; Time:</strong> ${safeDate}</p>
-                <p style="margin: 0 0 12px; font-size: 14px; color: #334155;"><strong>Venue:</strong> ${safeVenue}</p>
+                <p style="margin: 0 0 2px; font-size: 14px; color: #334155;"><strong>Venue:</strong> ${safeVenueName}</p>
+                <p style="margin: 0 0 12px; font-size: 13px; color: #64748B; padding-left: 52px;">${safeVenueAddress}</p>
+                <p style="margin: 0 0 8px; font-size: 14px; line-height: 1.5; color: #0A2540; font-weight: 700;">
+                  ${safeDelivery}
+                </p>
                 <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #475569;">
-                  <em>There is no postal shipping.</em> Your personally autographed ${safeEdition.toLowerCase()} edition will be presented to you upon check-in at the venue. Please keep this email and your reference code (<strong>${safeRef}</strong>) accessible on your mobile device.
+                  Your personally autographed ${safeEdition.toLowerCase()} edition can also be collected in person at the Book Launch and Policy Dialogue. Please present this confirmation email or your Order Reference (<strong>${safeRef}</strong>) upon check-in.
                 </p>
               </div>
 
@@ -160,13 +166,14 @@ Quantity: ${order.quantity} Autographed ${edition} ${order.quantity === 1 ? "Cop
 Total Paid: ${formattedTotal}
 Admission: Confirmed (Included with book purchase)
 
-EVENT & PICKUP DETAILS:
+EVENT & DELIVERY DETAILS:
 Event: ${config.title}
 Date & Time: ${config.dateText}
-Venue: ${config.venueText}
+Venue: CB 139, College Avenue Campus, University of Regina
+       📍 2155 College Ave, Regina, SK
 
-INSTRUCTIONS:
-There is no postal shipping. You will collect your personally autographed ${edition.toLowerCase()} edition at the Book Launch and Policy Dialogue. Please present this confirmation email or your Order Reference (${order.order_reference}) at the registration desk upon arrival.
+DELIVERY & INSTRUCTIONS:
+Delivery is free on orders shipped to Canada and the United States. You may also collect your personally autographed ${edition.toLowerCase()} edition in person at the Book Launch and Policy Dialogue. Please present this confirmation email or your Order Reference (${order.order_reference}) at the registration desk upon arrival.
 
 Inquiries & Support: ${config.supportEmail}
 `;

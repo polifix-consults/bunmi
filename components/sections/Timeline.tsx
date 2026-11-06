@@ -31,7 +31,7 @@ export function Timeline() {
             {EDUCATION.map((entry, i) => (
               <Reveal
                 as="li"
-                key={entry.qualification}
+                key={entry.qualification || entry.institution}
                 delay={i * 0.05}
                 className="border-b border-r border-slate-200 p-6 sm:p-7"
               >
@@ -41,11 +41,13 @@ export function Timeline() {
                   </p>
                 ) : null}
                 <h3 className="mt-1 text-base font-semibold leading-snug tracking-tight text-slate-900 sm:text-lg">
-                  {entry.qualification}
+                  {entry.qualification || entry.institution}
                 </h3>
-                <p className="mt-2.5 font-inter text-sm font-light leading-relaxed text-slate-600">
-                  {entry.institution}
-                </p>
+                {entry.qualification && entry.institution ? (
+                  <p className="mt-2.5 font-inter text-sm font-light leading-relaxed text-slate-600">
+                    {entry.institution}
+                  </p>
+                ) : null}
               </Reveal>
             ))}
           </ul>

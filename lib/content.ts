@@ -85,7 +85,7 @@ export const TIMELINE: TimelineEntry[] = [
 ];
 
 export type EducationEntry = {
-  qualification: string;
+  qualification?: string;
   institution: string;
   note?: string;
 };
@@ -114,7 +114,6 @@ export const EDUCATION: EducationEntry[] = [
     note: "Legal Practice",
   },
   {
-    qualification: "Executive Certificate in Anti-Corruption & Governance",
     institution: "Transparency International School on Integrity, Lithuania",
     note: "Alumnus",
   },

@@ -87,5 +87,6 @@ export const NAV_LINKS: NavLink[] = [
     label: "Policy Engagement",
     subLinks: POLICY_PLATFORMS,
   },
+  { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];

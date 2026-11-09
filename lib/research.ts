@@ -61,8 +61,8 @@ export const RESEARCH_WORKS: ResearchWork[] = [
       "This literature is a compilation of practical recommendations stemming from the highly cerebral sessions of The Policy Roundtable. A \"not for profit\", policy conversation centered organization, headquatered in Abuja, the capital city of Nigeria.",
     tags: ["The Policy Roundtable", "Policy Recommendations", "Civic Engagement", "Governance"],
     status: "Download Available",
-    href: "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/Books/minutes_from_roundtable.pdf",
-    downloadUrl: "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/Books/minutes_from_roundtable.pdf",
+    href: "/api/download/minutes",
+    downloadUrl: "/api/download/minutes",
     coverImage: "/images/media/minutes_from_the_round_table.jpg",
     featured: false,
   },
@@ -307,10 +307,10 @@ export async function getResearchWorks(): Promise<ResearchWork[]> {
             const isRoundtable = id === "minutes-from-roundtable";
             const isCopyAndPaste = id === "copy-and-paste-governance";
 
-            const downloadUrl = item.download_url
+            const downloadUrl = isRoundtable
+              ? "/api/download/minutes"
+              : item.download_url
               ? String(item.download_url)
-              : isRoundtable
-              ? "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/Books/minutes_from_roundtable.pdf"
               : undefined;
 
             const coverImage = item.cover_image

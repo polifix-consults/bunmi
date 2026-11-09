@@ -168,10 +168,9 @@ function FeaturedWork({
   const coverSrc = isRoundtable
     ? "/images/media/minutes_from_the_round_table.jpg"
     : (work.coverImage || "/images/media/bookcover.jpeg");
-  const targetHref =
-    work.downloadUrl ||
-    work.href ||
-    "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/Books/minutes_from_roundtable.pdf";
+  const targetHref = isRoundtable
+    ? "/api/download/minutes"
+    : (work.downloadUrl || work.href || "/api/download/minutes");
 
   return (
     <motion.div
@@ -216,10 +215,8 @@ function FeaturedWork({
           <div className="mt-8 flex flex-wrap items-center gap-3">
             {isRoundtable ? (
               <a
-                href={targetHref}
+                href="/api/download/minutes"
                 download="minutes_from_roundtable.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded bg-[#0A2540] px-6 py-3 font-inter text-xs font-bold uppercase tracking-[0.15em] text-white shadow-sm transition-colors duration-200 hover:bg-[#061628]"
               >
                 <Download className="h-4 w-4" aria-hidden="true" />
@@ -299,10 +296,8 @@ function IndexRow({ work, no }: { work: ResearchWork; no: number }) {
             {/* Download Button ONLY (no order book, no launch update) */}
             <div className="pt-2">
               <a
-                href={targetHref}
+                href="/api/download/minutes"
                 download="minutes_from_roundtable.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded bg-[#0A2540] px-5 py-2.5 font-inter text-xs font-bold uppercase tracking-[0.14em] text-white shadow-sm transition-colors duration-200 hover:bg-[#061628]"
               >
                 <Download className="h-4 w-4" aria-hidden="true" />

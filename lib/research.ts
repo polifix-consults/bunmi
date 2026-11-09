@@ -63,7 +63,7 @@ export const RESEARCH_WORKS: ResearchWork[] = [
     status: "Download Available",
     href: "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/Books/minutes_from_roundtable.pdf",
     downloadUrl: "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/Books/minutes_from_roundtable.pdf",
-    coverImage: "/images/media/pRoundT.webp",
+    coverImage: "/images/media/minutes_from_the_round_table.jpg",
     featured: false,
   },
   {
@@ -318,7 +318,7 @@ export async function getResearchWorks(): Promise<ResearchWork[]> {
               : isCopyAndPaste
               ? "/images/media/bookcover.jpeg"
               : isRoundtable
-              ? "/images/media/pRoundT.webp"
+              ? "/images/media/minutes_from_the_round_table.jpg"
               : undefined;
 
             return {

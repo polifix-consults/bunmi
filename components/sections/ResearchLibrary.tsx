@@ -7,7 +7,6 @@ import { ArrowUpRight, Download } from "lucide-react";
 
 import { Reveal } from "@/components/ui/Reveal";
 import { useOrderModal } from "@/components/context/OrderModalContext";
-import { useWaitlistModal } from "@/components/context/WaitlistModalContext";
 import { RESEARCH, RESEARCH_INTRO, type ResearchWork } from "@/lib/content";
 import { cn } from "@/lib/cn";
 
@@ -165,7 +164,14 @@ function FeaturedWork({
   reduceMotion: boolean;
 }) {
   const { openOrderModal } = useOrderModal();
-  const { openWaitlistModal } = useWaitlistModal();
+  const isRoundtable = work.id === "minutes-from-roundtable";
+  const coverSrc = isRoundtable
+    ? "/images/media/minutes_from_the_round_table.jpg"
+    : (work.coverImage || "/images/media/bookcover.jpeg");
+  const targetHref =
+    work.downloadUrl ||
+    work.href ||
+    "https://fbzmzvhuutzwcnspotzj.supabase.co/storage/v1/object/public/Books/minutes_from_roundtable.pdf";
 
   return (
     <motion.div
@@ -178,10 +184,10 @@ function FeaturedWork({
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         {/* Book Cover Image */}
         <div className="lg:col-span-4">
-          <div className="relative mx-auto aspect-[1/1.18] w-full max-w-[17.5rem] overflow-hidden rounded-md border border-slate-200 bg-[#0A2540] shadow-xl ring-1 ring-slate-900/10 lg:mx-0">
+          <div className="relative mx-auto aspect-[1/1.18] sm:aspect-[1/1.25] w-full max-w-[17.5rem] overflow-hidden rounded-md border border-slate-200 bg-[#0A2540] shadow-xl ring-1 ring-slate-900/10 lg:mx-0">
             <Image
-              src="/images/media/bookcover.jpeg"
-              alt={`Book Cover — ${work.title}`}
+              src={coverSrc}
+              alt={`Cover — ${work.title}`}
               fill
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 40vw, 80vw"
               priority
@@ -208,20 +214,26 @@ function FeaturedWork({
             {work.abstract}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={openOrderModal}
-              className="inline-flex items-center justify-center rounded bg-[#0A2540] px-6 py-3 font-inter text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors duration-200 hover:bg-[#061628] cursor-pointer"
-            >
-              Order Book &amp; Attend Launch
-            </button>
-            <button
-              type="button"
-              onClick={openWaitlistModal}
-              className="inline-flex items-center justify-center rounded border border-slate-300 px-5 py-3 font-inter text-xs font-semibold uppercase tracking-[0.12em] text-slate-700 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-950 cursor-pointer"
-            >
-              Launch Updates
-            </button>
+            {isRoundtable ? (
+              <a
+                href={targetHref}
+                download="minutes_from_roundtable.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded bg-[#0A2540] px-6 py-3 font-inter text-xs font-bold uppercase tracking-[0.15em] text-white shadow-sm transition-colors duration-200 hover:bg-[#061628]"
+              >
+                <Download className="h-4 w-4" aria-hidden="true" />
+                <span>Download Literature (PDF)</span>
+              </a>
+            ) : (
+              <button
+                type="button"
+                onClick={openOrderModal}
+                className="inline-flex items-center justify-center rounded bg-[#0A2540] px-6 py-3 font-inter text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors duration-200 hover:bg-[#061628] cursor-pointer"
+              >
+                Order Book &amp; Attend Launch
+              </button>
+            )}
             <div className="flex flex-wrap gap-x-2 gap-y-1 font-inter text-[11px] uppercase tracking-[0.14em] text-slate-400 sm:ml-2">
               {work.tags.map((t) => (
                 <span key={t}>{t}</span>
@@ -245,12 +257,82 @@ function IndexRow({ work, no }: { work: ResearchWork; no: number }) {
   const targetHref = work.downloadUrl || work.href;
   const isRoundtable = work.id === "minutes-from-roundtable";
 
+  if (isRoundtable) {
+    return (
+      <div className="group rounded-xl border border-slate-200/90 bg-slate-50/70 p-5 sm:p-7 my-4 transition-all duration-200 hover:border-slate-300">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-12 sm:items-center">
+          {/* Book Cover Image */}
+          <div className="sm:col-span-3 lg:col-span-2">
+            <div className="relative aspect-[1/1.25] sm:aspect-[1/1.3] w-full max-w-[140px] mx-auto sm:mx-0 overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm">
+              <Image
+                src={work.coverImage || "/images/media/minutes_from_the_round_table.jpg"}
+                alt={work.title}
+                fill
+                sizes="(min-width: 640px) 140px, 80vw"
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
+
+          {/* Book Info */}
+          <div className="sm:col-span-6 lg:col-span-7 space-y-3">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="font-inter text-xs font-bold tabular-nums tracking-widest text-slate-400">
+                {label}
+              </span>
+              <span className="inline-block rounded bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 font-inter text-[10px] font-semibold uppercase tracking-wider text-amber-900">
+                Book
+              </span>
+              <span className="font-inter text-xs font-semibold tabular-nums text-slate-700">
+                {work.date || work.year}
+              </span>
+            </div>
+
+            <h3 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+              {work.title}
+            </h3>
+
+            <p className="font-inter text-sm font-light leading-relaxed text-slate-600 max-w-xl">
+              {work.abstract}
+            </p>
+
+            {/* Download Button ONLY (no order book, no launch update) */}
+            <div className="pt-2">
+              <a
+                href={targetHref}
+                download="minutes_from_roundtable.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded bg-[#0A2540] px-5 py-2.5 font-inter text-xs font-bold uppercase tracking-[0.14em] text-white shadow-sm transition-colors duration-200 hover:bg-[#061628]"
+              >
+                <Download className="h-4 w-4" aria-hidden="true" />
+                <span>Download Literature (PDF)</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right Meta Column */}
+          <div className="sm:col-span-3 sm:text-right border-t sm:border-t-0 pt-4 sm:pt-0 border-slate-200/70">
+            <div className="font-inter text-[11px] font-bold uppercase tracking-[0.16em] text-slate-900">
+              {work.kind}
+            </div>
+            <div className="mt-1.5 font-inter text-xs text-slate-500">
+              {work.venue}
+            </div>
+            {work.status && (
+              <span className="mt-2 inline-block border border-slate-200 bg-white px-2.5 py-1 font-inter text-[10px] uppercase tracking-[0.14em] text-slate-600">
+                {work.status}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
-      className={cn(
-        "group grid grid-cols-1 gap-x-6 gap-y-4 border-b border-slate-200 py-7 transition-colors duration-200 sm:grid-cols-12 sm:items-start",
-        isRoundtable ? "bg-slate-50/60 p-4 sm:p-6 rounded-lg my-2 border border-slate-200" : "hover:bg-slate-50/60",
-      )}
+      className="group grid grid-cols-1 gap-x-6 gap-y-4 border-b border-slate-200 py-7 transition-colors duration-200 sm:grid-cols-12 sm:items-start hover:bg-slate-50/60"
     >
       {/* Catalogue number + year/date */}
       <div className="flex items-baseline gap-4 sm:col-span-2 sm:block">
@@ -260,11 +342,6 @@ function IndexRow({ work, no }: { work: ResearchWork; no: number }) {
         <span className="font-inter text-xs font-semibold tabular-nums tracking-wide text-slate-900 sm:mt-1 sm:block">
           {work.date || work.year}
         </span>
-        {isRoundtable && (
-          <span className="mt-2 inline-block rounded bg-amber-50 border border-amber-200/80 px-2 py-0.5 font-inter text-[10px] font-semibold uppercase tracking-wider text-amber-900">
-            Book
-          </span>
-        )}
       </div>
 
       {/* Title + abstract / blurb + action */}
@@ -294,7 +371,7 @@ function IndexRow({ work, no }: { work: ResearchWork; no: number }) {
           {work.abstract}
         </p>
 
-        {/* Download action button for Minutes from the roundtable */}
+        {/* Download action button for downloadable items */}
         {isDownloadable && (
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <a
@@ -310,8 +387,8 @@ function IndexRow({ work, no }: { work: ResearchWork; no: number }) {
           </div>
         )}
 
-        {/* Tags (hidden for roundtable card per request) */}
-        {!isRoundtable && work.tags.length > 0 && (
+        {/* Tags */}
+        {work.tags.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-x-2 gap-y-1 font-inter text-[11px] text-slate-400">
             {work.tags.map((tag) => (
               <span key={tag} className="text-slate-500">{tag}</span>
